@@ -16,7 +16,6 @@
     display: inline-flex;
     flex-wrap: wrap;  
     justify-content: center;
-    align-content: ;
 }
 
 .Create_Box{
@@ -78,9 +77,9 @@
 }
 
 .Display_Qty{
-    resize: none;
     border-radius: 10%;
     text-align: center;
+    width: 100%;
 }
 
 .Cancel{
@@ -215,6 +214,12 @@
 #SubmitButtonText{
     padding: 5px 10px;
     color: blanchedalmond;
+    background-color: inherit;
+    font-size: inherit;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
 }
 
 a{
@@ -266,8 +271,4 @@ button{
 #Display_Items button{
     background-color: inherit;
     font-family: inherit;
-}
-
-.Nav_Item_Name{
-    content: '▶ ';
 }

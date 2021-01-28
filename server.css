@@ -172,3 +172,11 @@ strong{
 option{
     font-weight: 100;
 }
+
+button{
+    border: none;
+    font-size: inherit;
+    background-color: inherit;
+    color: #97CAEF;
+    cursor: pointer;
+}
