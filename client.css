@@ -196,7 +196,7 @@
     display: inline;
 }
 
-#SubmitButton{
+#SubmitButtonSection{
     align-self: flex-end;
     height: 5%;
     width: 100%;
@@ -211,7 +211,7 @@
     justify-content: center;
 }
 
-#SubmitButtonText{
+#SubmitButton{
     padding: 5px 10px;
     color: blanchedalmond;
     background-color: inherit;
@@ -271,4 +271,87 @@ button{
 #Display_Items button{
     background-color: inherit;
     font-family: inherit;
+}
+
+.Previous_Order_Display{
+    display: none;
+    position: absolute;
+    height: 80%;
+    width: 80%;
+    background-color: white;
+    z-index: 1;
+    left: 10%;
+    top: 10%;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.Cancel_Button{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: darkred;
+    background-color: inherit;
+}
+
+.Previous_Order_Section{
+    box-sizing: border-box;
+    border: 2px solid blue;
+    width:90%;
+    height: 90%;
+    padding: 15px;
+}
+
+.Previous_Order_Table{
+    width: 100%;
+    overflow: auto; 
+    align-self: flex-start; 
+    border-collapse: separate; 
+    border-spacing: 2px 2px;
+}
+
+.Pr_Or_Date{
+    width: 15%;
+    text-align: center;
+    border: 2px solid blue;
+}
+
+.Pr_Or_Time{
+    width: 15%;
+    text-align: center;
+    border: 2px solid blue;
+}
+
+.Pr_Or_Status{
+    width: 15%;
+    text-align: center;
+    border: 2px solid blue;
+}
+
+.Pr_Or_Edit{
+    width: 15%;
+    text-align: center;
+    border: 2px solid blue;
+}
+
+.cart_table{
+    width: 100%;
+    overflow: auto;
+    align-self: flex-start;
+}
+
+.sub_table{
+    width: 100%;
+    border: 2px solid black;
+}
+
+.editButton{
+    width: 80%;
+    background-color: green; 
+    font-family: inherit; 
+    color: white; 
+    border-radius: 5px;
 }
