@@ -8,7 +8,8 @@
             <header id="Heading">
             <span id="Heading_name">Sprinklr Pantry</span>
             <section class="Search">
-                Table Number: </t>
+                <button class="addItemButton">ADD Item</button>
+                Table Number: 
                     <select class="Find_Table" name="Find_Table"> 
                         <option value="all" selected> All</option>
                         <option value="1">1</option>
@@ -29,16 +30,19 @@
             <section class="Content">
                 <div class="Order_Status" id="onWay">
                     <header> <span class="Order_Status_Header"><strong>On Way</strong></span></header>
+                    <section id="displayOnWay"></section>
                 </div>
                 <div class="Order_Status" id="processing">
                     <header> <span class="Order_Status_Header"><strong> Processing </strong></span></header>
+                    <section id="displayProcessingId"></section>
                 </div>
                 <div class="Order_Status" id="pending">
                     <header> <span class="Order_Status_Header"><strong>Pending</strong></span></header>
+                    <section id="displayPendingId"></section>
                 </div>
             </section>
         </article>
-        <script src="main.js"></script>
+        <!-- <script src="Client.js"></script> -->
         <script src="server.js"></script>
     </body>
 </html>
