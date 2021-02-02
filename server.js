@@ -1,9 +1,9 @@
 
-//let pen_ord=[];
+//let pen_ord=[]; 
 
 //let processing_ord=[ ];
 
-// let on_way_ord=[ { "no" : "1", "coffee" : "2" , "Tea" : "3"} , { "no" : "2", "coffee" : "2" , "Tea" : "3"} ];
+// let on_way_ord=[ { "no" : "1", "coffee" : "2" , "Tea" : "3"} //Object Time, QTy ,Name , TAble, { "no" : "2", "coffee" : "2" , "Tea" : "3"} ];
 
 //let delivered_ord = [];
 
@@ -24,25 +24,15 @@ process[0].onclick=function onWay(e){
 
         let temp_id=e.target.value;
         let on_way_ord = JSON.parse(localStorage.getItem("On_Way_Order"));
-        let temp_obj=on_way_ord.splice(on_way_ord.findIndex(a => a.id === temp_id) , 1)[0];
+        on_way_ord.splice(on_way_ord.indexOf(temp_id),1);
+        localStorage.setItem("On_Way_Order",JSON.stringify(on_way_ord));
 
-        temp_obj.status="Delivered";
         let all_ord=JSON.parse(localStorage.getItem("all_order"));
-        
-        for (let i=0; i<all_ord.length ; i++){
-            
-            if(JSON.parse(all_ord[i])["id"] === temp_id){
-                let curr_obj=JSON.parse(all_ord[i]);
-                curr_obj.status=temp_obj.status;
-                all_ord[i]=JSON.stringify(curr_obj);
-                break;
-            }
-        }
+        all_ord[temp_id]["status"]="Delivered";
         localStorage.setItem("all_order",JSON.stringify(all_ord));
 
-        localStorage.setItem("On_Way_Order",JSON.stringify(on_way_ord));
         let delivered_ord = JSON.parse(localStorage.getItem("Delivered_order"));
-        delivered_ord.push(temp_obj);
+        delivered_ord.push(temp_id);
         localStorage.setItem("Delivered_order",JSON.stringify(delivered_ord));
 
         displayOnWay();
@@ -52,28 +42,17 @@ process[0].onclick=function onWay(e){
 process[1].onclick=function processing(e){
     if(e.target.tagName=="BUTTON"){
 
-        
         let temp_id=e.target.value;
         let processing_ord = JSON.parse(localStorage.getItem("Processing_Order"));
-        let temp_obj=processing_ord.splice(processing_ord.findIndex(a => a.id === temp_id) , 1)[0];
+        processing_ord.splice(processing_ord.indexOf(temp_id),1);
+        localStorage.setItem("Processing_Order",JSON.stringify(processing_ord));
 
-        temp_obj.status="On_Way";
         let all_ord=JSON.parse(localStorage.getItem("all_order"));
-        
-        for (let i=0; i<all_ord.length ; i++){
-            
-            if(JSON.parse(all_ord[i])["id"] === temp_id){
-                let curr_obj=JSON.parse(all_ord[i]);
-                curr_obj.status=temp_obj.status;
-                all_ord[i]=JSON.stringify(curr_obj);
-                break;
-            }
-        }
+        all_ord[temp_id]["status"]="On_Way";
         localStorage.setItem("all_order",JSON.stringify(all_ord));
         
-        localStorage.setItem("Processing_Order",JSON.stringify(processing_ord));
         let on_way_ord = JSON.parse(localStorage.getItem("On_Way_Order"));
-        on_way_ord.push(temp_obj);
+        on_way_ord.push(temp_id);
         localStorage.setItem("On_Way_Order",JSON.stringify(on_way_ord));
         
         displayProcessing();
@@ -86,26 +65,17 @@ process[2].onclick=function pending(e){
 
         let temp_id=e.target.value;
         let pen_ord=JSON.parse(localStorage.getItem("Pending_Order"));
-        let temp_obj=pen_ord.splice(pen_ord.findIndex(a => a.id === temp_id) , 1)[0];
+        pen_ord.splice(pen_ord.indexOf(temp_id),1);
+        localStorage.setItem("Pending_Order",JSON.stringify(pen_ord));
 
-        temp_obj.status="Processing";
         let all_ord=JSON.parse(localStorage.getItem("all_order"));
-        
-        for (let i=0; i<all_ord.length ; i++){
-            
-            if(JSON.parse(all_ord[i])["id"] === temp_id){
-                let curr_obj=JSON.parse(all_ord[i]);
-                curr_obj.status=temp_obj.status;
-                all_ord[i]=JSON.stringify(curr_obj);
-                break;
-            }
-        }
+        all_ord[temp_id]["status"]="Processing";
         localStorage.setItem("all_order",JSON.stringify(all_ord));
 
-        localStorage.setItem("Pending_Order",JSON.stringify(pen_ord));
         let processing_ord = JSON.parse(localStorage.getItem("Processing_Order"));
-        processing_ord.push(temp_obj);
+        processing_ord.push(temp_id);
         localStorage.setItem("Processing_Order",JSON.stringify(processing_ord));
+        
         displayPending();
         displayProcessing();
     }
@@ -146,12 +116,17 @@ function displayPending(){
     //let elem=document.getElementById("displayPendingId");
     //alert(elem.tagName);
 
+    let items=JSON.parse(localStorage.getItem("items"));
+    let all_ord=JSON.parse(localStorage.getItem("all_order"));
+
     let sec_main=document.createElement("section");
     sec_main.id="displayPendingId";
 
     let pen_ord=JSON.parse(localStorage.getItem("Pending_Order"));
 
-    for(let ord of pen_ord){
+    for(let index in pen_ord){
+
+        let ord=all_ord[pen_ord[index]];
 
         let temp=document.createElement("div");
         temp.className="Order";
@@ -170,7 +145,7 @@ function displayPending(){
 
                 let data=document.createElement("td");
                 data.className="ItemName";
-                data.innerHTML=name;
+                data.innerHTML=items[name].itemName;
                 row.append(data);
 
                 data=document.createElement("td");
@@ -190,7 +165,7 @@ function displayPending(){
 
         let butt=document.createElement("button");
         butt.className="done On_Way";
-        butt.value=ord.id;
+        butt.value=pen_ord[index];
         butt.innerHTML="Move To Processing";
 
         temp.append(title);
@@ -209,12 +184,17 @@ function displayProcessing(){
     //let elem=document.getElementById("displayProcessingId");
     //alert(elem.tagName);
 
+    let items=JSON.parse(localStorage.getItem("items"));
+    let all_ord=JSON.parse(localStorage.getItem("all_order"));
+
     let processing_ord = JSON.parse(localStorage.getItem("Processing_Order"));
 
     let sec_main=document.createElement("section");
     sec_main.id="displayProcessingId";
 
-    for(let ord of processing_ord){
+    for(let index in processing_ord){
+
+        let ord=all_ord[processing_ord[index]];
 
         let temp=document.createElement("div");
         temp.className="Order";
@@ -233,7 +213,7 @@ function displayProcessing(){
 
                 let data=document.createElement("td");
                 data.className="ItemName";
-                data.innerHTML=name;
+                data.innerHTML=items[name].itemName;;
                 row.append(data);
 
                 data=document.createElement("td");
@@ -253,7 +233,7 @@ function displayProcessing(){
 
         let butt=document.createElement("button");
         butt.className="done On_Way";
-        butt.value=ord.id;
+        butt.value=processing_ord[index];
         butt.innerHTML="Deliver Order";
 
         temp.append(title);
@@ -273,9 +253,14 @@ function displayOnWay(){
     let sec_main=document.createElement("section");
     sec_main.id="displayOnWay";
 
+    let items=JSON.parse(localStorage.getItem("items"));
+    let all_ord=JSON.parse(localStorage.getItem("all_order"));
+
     let on_way_ord = JSON.parse(localStorage.getItem("On_Way_Order"));
 
-    for(let ord of on_way_ord){
+    for(let index in on_way_ord){
+
+        let ord=all_ord[on_way_ord[index]];
 
         let temp=document.createElement("div");
         temp.className="Order";
@@ -294,7 +279,7 @@ function displayOnWay(){
 
                 let data=document.createElement("td");
                 data.className="ItemName";
-                data.innerHTML=name;
+                data.innerHTML=items[name].itemName;;
                 row.append(data);
 
                 data=document.createElement("td");
@@ -314,7 +299,7 @@ function displayOnWay(){
 
         let butt=document.createElement("button");
         butt.className="done On_Way";
-        butt.value=ord.id;
+        butt.value=on_way_ord[index];
         butt.innerHTML="Delivered";
 
         temp.append(title);

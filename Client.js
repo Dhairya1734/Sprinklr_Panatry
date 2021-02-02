@@ -1,147 +1,103 @@
 // data
 
 let items=JSON.parse(localStorage.getItem("items"));
+let heading=JSON.parse(localStorage.getItem("heading"));
+let cart_map=new Map(); // cart 
 
-/*let items={
-    "Sandwich" : {
-        id : "Sandwich",
-        "Paneer Sandwich" : {
-            className : "images",
-            src : "sandwich.jpg",
-            alt : "Paneer Sandwich",
-        },
-        "Veg Sandwich" : {
-            className : "images",
-            src : "Veg Sandwich.webp",
-            alt : "Veg Sandwich",
-        },
-        "Club Sandwich" : {
-            className : "images",
-            src : "Club Sandwich.jpg",
-            alt : "Club Sandwich",
-        },
+/*let items = {
+    "i001" : {
+        "itemName" : "Paneer Sandwich",
+        "src" : "sandwich.jpg",
+        "alt" : "Paneer Sandwich",
     },
 
-    "Hot Drinks" : {
-        id : "HotDrinks",
-        "Tea" : {
-            className : "images",
-            src : "Tea.jpeg",
-            alt : "Tea",
-        },
-        "Black Tea" : {
-            className : "images",
-            src : "Black-Tea.jpeg",
-            alt : "Black Tea",
-        },
-        "Coffee" : {
-            className : "images",
-            src : "Coffee.jpg",
-            alt : "Coffee",
-        },
-        "Black Coffee" : {
-            className : "images",
-            src : "Black Coffee.jpg",
-            alt : "Black Coffee",
-        },
-        "Green Tea" : {
-            className : "images",
-            src : "Green Tea.jpeg",
-            alt : "Green Tea",
-        },
+    "i002" : {
+        "itemName" : "Veg Sandwich",
+        "src" : "Veg Sandwich.webp",
+        "alt" : "Veg Sandwich",
     },
 
-    "Cold Drinks" : {
-        id : "ColdDrinks",
-        "Sprite" : {
-            className : "images",
-            src : "Sprite.jpg",
-            alt : "Sprite",
-        },
-        "Energy Drink" : {
-            className : "images",
-            src : "Energy Drink.webp",
-            alt : "Energy Drink",
-        },
-        "Coffee" : {
-            className : "images",
-            src : "Coffee.jpg",
-            alt : "Coffee",
-        },
-        "Black Coffee" : {
-            className : "images",
-            src : "Black Coffee.jpg",
-            alt : "Black Coffee",
-        },
-        "Green Tea" : {
-            className : "images",
-            src : "Green Tea.jpeg",
-            alt : "Green Tea",
-        },
+    "i003" : {
+        "itemName" : "Club Sandwich",
+        "src" : "Club Sandwich.jpg",
+        "alt" : "Club Sandwich",
     },
 
-    "Smoothy" : {
-        id : "Smoothy",
-        "Tea" : {
-            className : "images",
-            src : "Tea.jpeg",
-            alt : "Tea",
-        },
-        "Black Tea" : {
-            className : "images",
-            src : "Black-Tea.jpeg",
-            alt : "Black Tea",
-        },
-        "Coffee" : {
-            className : "images",
-            src : "Coffee.jpg",
-            alt : "Coffee",
-        },
-        "Black Coffee" : {
-            className : "images",
-            src : "Black Coffee.jpg",
-            alt : "Black Coffee",
-        },
-        "Green Tea" : {
-            className : "images",
-            src : "Green Tea.jpeg",
-            alt : "Green Tea",
-        },
+    "i004" : {
+        "itemName" : "Tea",
+        "src" : "Tea.jpeg",
+        "alt" : "Tea",
     },
 
-    "Ice Cream" : {
-        id : "IceCream",
-        "Tea" : {
-            className : "images",
-            src : "Tea.jpeg",
-            alt : "Tea",
-        },
-        "Black Tea" : {
-            className : "images",
-            src : "Black-Tea.jpeg",
-            alt : "Black Tea",
-        },
-        "Coffee" : {
-            className : "images",
-            src : "Coffee.jpg",
-            alt : "Coffee",
-        },
-        "Black Coffee" : {
-            className : "images",
-            src : "Black Coffee.jpg",
-            alt : "Black Coffee",
-        },
-        "Green Tea" : {
-            className : "images",
-            src : "Green Tea.jpeg",
-            alt : "Green Tea",
-        },
+    "i005" : {
+        "itemName" : "Black Tea",
+        "src" : "Black-Tea.jpeg",
+        "alt" : "Black Tea",
+    },
+
+    "i006" : {
+        "itemName" : "Coffee",
+        "src" : "Coffee.jpg",
+        "alt" : "Coffee",
+    },
+
+    "i007" : {
+        "itemName" : "Black Coffee",
+        "src" : "Black Coffee.jpg",
+        "alt" : "Black Coffee",
+    },
+
+    "i008" : {
+        "itemName" : "Green Tea",
+        "src" : "Green Tea.jpeg",
+        "alt" : "Green Tea",
+    },
+
+    "i009" : {
+        "itemName" : "Sprite",
+        "src" : "Sprite.jpg",
+        "alt" : "Sprite",
+    },
+
+    "i010" : {
+        "itemName" : "Energy Drink",
+        "src" : "Energy Drink.webp",
+        "alt" : "Energy Drink",
+    },
+}
+
+let heading = {
+    "h01" : {
+        "visibleName": "Sandwich",
+        "visbleId": "Sandwich",
+        "itemList" : ["i001", "i002", "i003"],
+    },
+    "h02" : {
+        "visibleName": "Hot Drinks",
+        "visbleId": "HotDrinks",
+        "itemList" : ["i004", "i005", "i006", "i007", "i008"],
+    },
+    "h03" : {
+        "visibleName": "Cold Drink",
+        "visbleId": "ColdDrinks",
+        "itemList" : ["i009", "i010", "i006", "i007", "i008"],
+    },
+    "h04" : {
+        "visibleName": "Smoothy",
+        "visbleId": "Smoothy",
+        "itemList" : ["i009", "i010", "i006", "i007", "i008"],
+    },
+    "h05" : {
+        "visibleName": "Ice Cream",
+        "visbleId": "IceCream",
+        "itemList" : ["i009", "i010", "i006", "i007", "i008"],
     },
 };
 
 localStorage.setItem("items",JSON.stringify(items));
+localStorage.setItem("heading",JSON.stringify(heading));
 
-let all_ord=[];
+/*let all_ord={};
 
 localStorage.setItem("all_order",JSON.stringify(all_ord));
 
@@ -149,8 +105,6 @@ localStorage.setItem( "Order_Id" , "1");
 
 localStorage.setItem("order_updated","false");*/
 
-
-let cart_map=new Map();
 
 // Model
 
@@ -182,23 +136,28 @@ function addOredrToPrevious(e){
     
     let all_ord=JSON.parse(localStorage.getItem("all_order"));
 
+    let allOrdId;
+
     let temp_obj={};
     temp_obj.date=new Date();
     let id_num=Number(localStorage.getItem("Order_Id"));
-    temp_obj.no="05";
-    temp_obj.id="u"+temp_obj.no+id_num.toString();
+    temp_obj.no="05"; 
+    allOrdId="u"+temp_obj.no+id_num.toString();
     id_num++;
     localStorage.setItem("Order_Id", id_num.toString());
     temp_obj.status="Pending";
+
+    // Order List
     for(let key of cart_map.keys()){
         temp_obj[key]=cart_map.get(key);
     }
 
-    all_ord.unshift(JSON.stringify(temp_obj));
+    //all_ord.unshift(JSON.stringify(temp_obj));
+    all_ord[allOrdId]=temp_obj;
     localStorage.setItem("all_order",JSON.stringify(all_ord));
 
     let pen_ord=JSON.parse(localStorage.getItem("Pending_Order"));
-    pen_ord.push(temp_obj);
+    pen_ord.push(allOrdId);
     localStorage.setItem("Pending_Order",JSON.stringify(pen_ord));
     localStorage.setItem("order_updated","true");
     
@@ -206,48 +165,35 @@ function addOredrToPrevious(e){
 }
 
 function removeOredrfromPrevious(e){
-    let temp_id=e.target.value;
+ 
     let all_ord=JSON.parse(localStorage.getItem("all_order"));
 
-    let temp_obj;
+    let temp_obj=all_ord[e.target.value];
 
-    for (let i=0; i<all_ord.length ; i++){
-            
-        if(JSON.parse(all_ord[i])["id"] === temp_id){
-            temp_obj=JSON.parse(all_ord.splice(i,1)[0]);
-            //alert(all_ord.splice(i,1)[0]);
-            break;
-        }
-    }
+    delete all_ord[e.target.value];
+
     localStorage.setItem("all_order",JSON.stringify(all_ord));
-
-    //alert(temp_obj["id"]);
 
     return temp_obj;
 }
 
-function removeFromPending(temp_obj,temp_id){
+function copyToCart(obj){
     cart_map = new Map();
-    
-    //alert(temp_obj["id"]);
 
-    //alert("01");
-
-    let pen_ord=JSON.parse(localStorage.getItem("Pending_Order"));
-    pen_ord.splice(pen_ord.findIndex(a => a.id === temp_id) , 1)[0];
-    localStorage.setItem("Pending_Order",JSON.stringify(pen_ord));
-    localStorage.setItem("order_updated","true");
-
-    //alert("02");
-
-    for(let key in temp_obj){
-
+    for(let key in obj){
+        
         if(key !== "id" && key!=="date" && key!="status" && key!="no"){
-            cart_map.set(key,temp_obj[key]);
+            cart_map.set(key,obj[key]);
         }
     }
+}
 
-    //alert("03");
+function removeFromPending(temp_id){
+
+    let pen_ord=JSON.parse(localStorage.getItem("Pending_Order"));
+    pen_ord.splice(pen_ord.indexOf(temp_id));
+    localStorage.setItem("Pending_Order",JSON.stringify(pen_ord));
+    localStorage.setItem("order_updated","true");
 
 }
 
@@ -260,47 +206,41 @@ function DisplayItem () {
 
     let sec=document.getElementById("LeftContent");
 
-    for(let key in items){
+    for(let indexHeading in heading){
 
         let sub_sec=document.createElement("section");
         sub_sec.className="Inline_Flex";
 
-        for(let j in items[key]){
+        let title=document.createElement("h1");
+        title.innerHTML=heading[indexHeading]["visibleName"];
+        title.id=indexHeading;
+        sec.append(title);
 
-            if(j=="id"){
+        for(let key of heading[indexHeading]["itemList"]){
 
-                let heading=document.createElement("h1");
-                heading.innerHTML=key;
-                heading.id=items[key][j];
-                sec.append(heading);
+            let temp_div=document.createElement("div");
+            temp_div.className="Create_Box Show_box";
+            
+            let temp_img=document.createElement("img");
+            temp_img.className="images"
+            temp_img["src"] = items[key]["src"];
+            temp_img["alt"] = items[key]["alt"];
+            temp_div.append(temp_img);
 
-            }
-            else{
+            temp_div.append(document.createElement("br"));
 
-                let temp_div=document.createElement("div");
-                temp_div.className="Create_Box Show_box";
-                
-                let temp_img=document.createElement("img");
-                for(let k in items[key][j]){
-                    temp_img[k]=items[key][j][k];
-                }
-                temp_div.append(temp_img);
+            let text_style=document.createElement("span");
+            text_style.className="Item_Name";
+            text_style.innerHTML=items[key]["itemName"];
+            temp_div.append(text_style);
+            
+            let cart_but=document.createElement("button");
+            cart_but.className="AddButton";
+            cart_but.value=key;
+            cart_but.insertAdjacentHTML('beforeend'," Add to Cart");
+            temp_div.append(cart_but);
 
-                temp_div.append(document.createElement("br"));
-
-                let text_style=document.createElement("span");
-                text_style.className="Item_Name";
-                text_style.innerHTML=j;
-                temp_div.append(text_style);
-                
-                let cart_but=document.createElement("button");
-                cart_but.className="AddButton";
-                cart_but.value=j;
-                cart_but.insertAdjacentHTML('beforeend'," Add to Cart");
-                temp_div.append(cart_but);
-
-                sub_sec.append(temp_div);
-            }
+            sub_sec.append(temp_div);
         }
 
         sec.append(sub_sec);
@@ -328,7 +268,7 @@ function DisplayCart(){
         
         data=document.createElement("td");
         data.className="table_item_name";;
-        data.innerHTML=key;
+        data.innerHTML=items[key].itemName;
         row.append(data);
         
         data=document.createElement("td");
@@ -373,13 +313,15 @@ document.getElementById("All_Order").onclick=function displayAllOrder(e){
 
     let all_ord=JSON.parse(localStorage.getItem("all_order"));
     
-    for(let ord of all_ord){
+    for(let ord in all_ord){
 
-        let temp_obj = JSON.parse(ord, function(key, value) {
-                if (key == 'date') return new Date(value);
-                return value;
-            });
+        // let temp_obj = JSON.parse(all_ord[ord], function(key, value) {
+        //         if (key == 'date') return new Date(value);
+        //         return value;
+        //     });
 
+        let temp_obj=all_ord[ord];
+        temp_obj.date=new Date(temp_obj.date);
         let row=document.createElement("tr");
 
         let data=document.createElement("td");
@@ -406,7 +348,7 @@ document.getElementById("All_Order").onclick=function displayAllOrder(e){
                 let sub_data=document.createElement("td");
                 sub_data.style.width="90%";
                 sub_data.style.textAlign="center";
-                sub_data.innerHTML=key;
+                sub_data.innerHTML=items[key]["itemName"];
                 sub_row.append(sub_data);
                 
                 sub_data=document.createElement("td");
@@ -428,13 +370,13 @@ document.getElementById("All_Order").onclick=function displayAllOrder(e){
             let butt=document.createElement("button");
             butt.className="editButton";
             butt.innerHTML="Edit";
-            butt.value=temp_obj.id;
+            butt.value=ord;
             data.append(butt);
-        } else {
+        } else if(temp_obj.status == "Delivered"){
             butt=document.createElement("button");
             butt.className="removeButton";
             butt.innerHTML="Remove";
-            butt.value=temp_obj.id;
+            butt.value=ord;
             data.append(butt);
         }
 
@@ -466,20 +408,19 @@ document.querySelector('.Previous_Order_Display').onclick = function(e) {
 
         let temp_id=e.target.value;
 
+        removeFromPending(temp_id);
+
         let temp_obj = removeOredrfromPrevious(e);
 
-        document.querySelector('.Previous_Order_Display').style.display="none";
+        copyToCart(temp_obj);
 
-        //alert(temp_obj["id"]);
-        removeFromPending(temp_obj,temp_id);
+        document.querySelector('.Previous_Order_Display').style.display="none";
 
         DisplayCart();
 
     } else if(e.target.className == "removeButton"){
 
-        let temp_id=e.target.value;
-
-        let temp_obj = removeOredrfromPrevious(e);
+       removeOredrfromPrevious(e);
 
         document.querySelector('.Previous_Order_Display').style.display="none";
 
@@ -494,7 +435,7 @@ document.getElementById('LeftContent').onclick = function(e){
 };
 
 function addToCart(e){
-    addQty(e.target.previousElementSibling.innerHTML.toString());
+    addQty(e.target.value);
     DisplayCart();
 };
 
@@ -519,3 +460,15 @@ document.querySelector('#SubmitButton').onclick = function submitAction(e){
     addOredrToPrevious(e);
     DisplayCart();
 };
+
+function displayItemList(){
+    let navItemList=document.getElementsByClassName("Nav_Item_Name")[0];
+    if(navItemList.style.display=="block")
+    {
+        navItemList.style.display="none";
+        return;
+    }
+    let st=getComputedStyle(navItemList);
+    navItemList.style.display="block";
+}
+
