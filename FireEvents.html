@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <style>
+            .Parent{
+                height: 100px;
+                width: 100px;
+                background-color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="Parent">
+            This is parent Div
+        </div>
+        <script>
+            let elem = document.querySelector('.Parent');
+            
+            elem.addEventListener('click',click);
+            elem.addEventListener('mousedown',mousedown);
+            elem.addEventListener('mousemove',mousemove);
+            elem.addEventListener('mouseout',mouseout);
+            elem.addEventListener('mouseup',mouseup);
+            elem.addEventListener('wheel',wheel);
+            function click(e){
+                console.log("Click");
+            }
+            function mousedown(e){
+                console.log("MouseDown");
+            }
+            function mousemove(e){
+                console.log("mousemove");
+            }
+            function mouseout(e){
+                console.log("mouseout");
+            }
+            function mouseup(e){
+                console.log("mouseup");
+            }
+            function wheel(e){
+                console.log("wheel");
+            }
+        </script>
+    </body>
+</html>

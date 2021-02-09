@@ -1,35 +1,84 @@
-const form = document.querySelector('form');
-const ul = document.querySelector('ul');
-const button = document.querySelector('button');
-const input = document.getElementById('item');
-let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+import React from 'react';
 
-localStorage.setItem('items', JSON.stringify(itemsArray));
-const data = JSON.parse(localStorage.getItem('items'));
+export class Home extends React.Component {
+    constructor(props) {
+        super();
+        this.state = {
+            age: "27",
+            status: 0,
+            homeLink: props.initialLinkName
+        };
+        setTimeout(() => {
+            this.setState({
+                status: 1
+            });
+        },3000);
+        console.log("Constructor");
+    }
 
-const liMaker = (text) => {
-  const li = document.createElement('li');
-  li.textContent = text;
-  ul.appendChild(li);
+    componentWillMount() {
+        console.log("Component will mount");
+    }
+
+    componentDidMount() {
+        console.log("Component did mount!");
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log("Component will receive props", nextProps);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("Should Component update", nextProps, nextState);
+        // if (nextState.status === 1) {
+        //     return false;
+        // }
+        return true;
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log("Component will update", nextProps, nextState);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log("Component did update", prevProps, prevState);
+    }
+
+    componentWillUnmount() {
+        console.log("Component will unmount");
+    }
+
+    onMakeOlder() {
+        this.setState({
+            age: this.state.age + 3
+        });
+    }
+
+    onChangeLink() {
+        this.props.changeLink(this.state.homeLink);
+    }
+
+    onHandleChange(event) {
+        this.setState({
+            homeLink: event.target.value
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <p>In a new Component!</p>
+                <p>Your name is {this.props.name}, your age is {this.state.age}</p>
+                <p>Status: {this.state.status}</p>
+                <hr/>
+                <button onClick={() => this.onMakeOlder()} className="btn btn-primary">Make me older!</button>
+                <hr/>
+                <button onClick={this.props.greet} className="btn btn-primary">Greet</button>
+                <hr/>
+                <input type="text" value={this.state.homeLink}
+                       onChange={(event) => this.onHandleChange(event)} />
+                <button onClick={this.onChangeLink.bind(this)} className="btn btn-primary">Change Header Link</button>
+            </div>
+        );
+    }
 }
-
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  itemsArray.push(input.value);
-  localStorage.setItem('items', JSON.stringify(itemsArray));
-  liMaker(input.value);
-  input.value = "";
-});
-
-data.forEach(item => {
-  liMaker(item);
-});
-
-button.addEventListener('click', function () {
-  localStorage.clear();
-  while (ul.firstChild) {
-    ul.removeChild(ul.firstChild);
-  }
-  itemsArray = [];
-});
