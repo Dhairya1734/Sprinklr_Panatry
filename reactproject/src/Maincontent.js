@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Navigation from './Navigation.js'
 import Cart from './Cart.js'
 import ItemList from './ItemList.js'
 
-export default class Maincontent extends React.Component{
+/*export default class Maincontent extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -82,4 +82,75 @@ export default class Maincontent extends React.Component{
             </section>
         )
     }
-} 
+} */
+
+export default function Maincontent(props) {
+
+    const [state , setState] = useState({
+        "cart" : new Map(),
+        "itemList" : JSON.parse(localStorage.getItem("items")),
+        "itemHeading" : JSON.parse(localStorage.getItem("heading")),
+    },[]);
+
+    const removeItemFromCart = useCallback((key) => {
+        let newCart = new Map(state.cart);
+        newCart.delete(key);
+        setState({...state , cart : newCart});
+    },[state]);
+
+    const addQty = useCallback((key) => {
+        let newCart = new Map(state.cart);
+        if(newCart.get(key) === undefined)
+            newCart.set(key,1);
+        else
+            newCart.set(key,state.cart.get(key)+1);
+        setState({...state , cart : newCart});
+    },[state]);
+
+    const subtractQty = useCallback((key) => {
+        let newCart = new Map(state.cart);
+        if(newCart.get(key) === 1)
+            removeItemFromCart(key);
+        else{
+            newCart.set(key,state.cart.get(key)-1);
+            setState({...state , cart : newCart});
+        }
+    },[state]);
+
+    const addItemToCart = (e) => {
+        if(e.target.className == "AddButton")
+            addQty(e.target.value);
+    };
+
+
+    const resetCart = useCallback(() => {
+        console.log("First Step Is done");
+        let newCart = new Map();
+        setState({...state , cart : newCart});
+    },[state]);
+
+    const copyToCart = useCallback((tempObj) => {
+        let newCart = new Map();
+        for(let key in tempObj){
+            if(key !== "id" && key!=="date" && key!="status" && key!="no"){
+                newCart.set(key,tempObj[key]);
+            }
+        }
+        setState({...state , cart : newCart});
+    },[state]);
+
+    const Handlers =  {
+        "addQtyHandler" : addQty,
+        "subtractQtyHandler" : subtractQty,
+        "removeItemFromCartHandler" : removeItemFromCart
+    }
+
+    return (
+        <section id="Content">
+            <Navigation itemHeading={state.itemHeading} itemList = {state.itemList} copyToCartHandler = {copyToCart}/>
+            <ItemList handler={addItemToCart} itemList = {state.itemList} itemHeading={state.itemHeading} />
+            <Cart cart={state.cart} handler={Handlers} itemList = {state.itemList} resetCart = {resetCart}/>
+        </section>
+    );
+    
+}

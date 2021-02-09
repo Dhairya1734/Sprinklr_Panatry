@@ -1,7 +1,7 @@
 import React from 'react';
 import PreviousOrderSubRow from './PreviousOrderSubRow'
 
-export default function DisplayPreviousOrderRow(props) {
+export default React.memo(function DisplayPreviousOrderRow(props) {
 
     return (
         <tr>
@@ -23,4 +23,4 @@ export default function DisplayPreviousOrderRow(props) {
         </tr>
     );
     
-}
+});

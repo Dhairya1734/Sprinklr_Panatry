@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ItemCard from './ItemCard';
 
-function ItemHeading(props){
+export default React.memo(function ItemHeading(props){
 
     return (
         <>
@@ -10,9 +10,8 @@ function ItemHeading(props){
         </>
     );
 
-}
- 
-export default ItemHeading;
+});
+
 
 
 {/*  */}

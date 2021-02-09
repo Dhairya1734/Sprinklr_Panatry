@@ -9,7 +9,7 @@ export default React.memo(function OnWay(props){
         </header>
         {Object.keys(props.on_way_ord).map( key => {
             return ( props.table == "all" || props.all_ord[props.on_way_ord[key]]["no"].toString() == props.table.toString()) ?
-            <DisplayOrderCard key={props.on_way_ord[key]} id={props.on_way_ord[key]} all_ord={props.all_ord} onButton={"Delivered"} items= {props.items}/> : "";
+            <DisplayOrderCard key={props.on_way_ord[key]} id={props.on_way_ord[key]} all_ord={props.all_ord} onButton={"Delivery Successful"} items= {props.items}/> : "";
         })}
         <section id="displayOnWay"></section>
         </>

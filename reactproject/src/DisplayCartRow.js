@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class DisplayCartRow extends Component {
+/* class DisplayCartRow extends Component {
     constructor(props) {
         super(props);
     }
@@ -36,4 +36,25 @@ class DisplayCartRow extends Component {
     }
 }
  
-export default DisplayCartRow;
+export default DisplayCartRow; */
+
+export default React.memo(function DisplayCartRow(props) {
+    return (  
+        <tr key={props.id}>
+            <td className = "table_sr_no">{props.srNo}</td>
+            <td className = "table_item_name"> {props.name} </td>
+            <td className = "table_item_subtract">
+                <button className="Change_Qty" value={props.itemId}>-</button>
+            </td>
+            <td className = "table_item_qty">
+                {props.qty}
+            </td>
+            <td className="table_item_add">
+                <button className="Change_Qty" value={props.itemId}>+</button>
+            </td>
+            <td className="table_item_remove">
+                <button className="Cancel" value={props.itemId}>X</button>
+            </td>
+        </tr>
+    );
+})
