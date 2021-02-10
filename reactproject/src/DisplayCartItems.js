@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DisplayCartRow from "./DisplayCartRow.js";
+import {Provider, useDispatch , useSelector } from 'react-redux'
 
 /* export default class DisplayCartItems extends Component {
     constructor(props) {
@@ -33,6 +34,9 @@ import DisplayCartRow from "./DisplayCartRow.js";
 } */
  
 export default React.memo(function DisplayCartItems(props){
+
+    const cart = useSelector(state => state.cart);
+
     const DisplayItems = (cart) => {
         let allRowsInCart = [];
         let ctr = 1;
@@ -46,7 +50,7 @@ export default React.memo(function DisplayCartItems(props){
     return ( 
         <table className="White cart_table">
             <tbody>
-                {DisplayItems(props.cart)}
+                {DisplayItems(cart)}
             </tbody>
         </table>
     );

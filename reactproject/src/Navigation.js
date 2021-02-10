@@ -8,12 +8,10 @@ export default React.memo(function Navigation(props){
     const [shouldDisplayItemList,setShouldDisplayItemList] = useState(0);
 
     const displayItemList = () => {
-        console.log("Navigation displayItemList");
         setShouldDisplayItemList((shouldDisplayItemList + 1)%2);
     };
 
     const displayPreviousList =  () => {
-        console.log("Display Previous List");
         setShouldDisplayPrevious((shouldDisplayPrevious + 1)%2);
     };
 
@@ -29,7 +27,7 @@ export default React.memo(function Navigation(props){
             </ol> : " "}
             <button className="White Main_Nav" id="All_Order" onClick = {displayPreviousList}> <strong>My Order</strong></button><br /> 
         </ol>
-        { shouldDisplayPrevious === 1 ? <DisplayPreviousOrder itemList = {props.itemList} copyToCartHandler = {props.copyToCartHandler} displayPreviousListHandler={displayPreviousList}/> : null }
+        { shouldDisplayPrevious === 1 ? <DisplayPreviousOrder itemList = {props.itemList} displayPreviousListHandler={displayPreviousList}/> : null }
     </nav>
     );
     

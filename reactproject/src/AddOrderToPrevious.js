@@ -17,9 +17,11 @@ function AddOrderToPrevious(props) {
 
     // Order List
     for(let key of props.cart.keys()){
+        console.log(key);
         temp_obj[key]=props.cart.get(key);
     }
 
+    console.log(temp_obj);
     //all_ord.unshift(JSON.stringify(temp_obj));
     all_ord[allOrdId]=temp_obj;
     localStorage.setItem("all_order",JSON.stringify(all_ord));

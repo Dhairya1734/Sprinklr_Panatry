@@ -15,12 +15,16 @@ export default React.memo(function DisplayPreviousOrderRow(props) {
                 </table>
             </td>
             <td className = "Pr_Or_Edit">
-                <button className = { (props.order.status === "Pending" ? "editButton" : "removeButton")} value={props.id}> {
-                    props.order.status == "Pending" ? "Edit" : "Remove"} 
-                </button>
+                { props.order.status === "Pending" || props.order.status === "Deliverd" ? 
+                    <button className = { (props.order.status === "Pending" ? "editButton" : "removeButton")} value={props.id}> {
+                        props.order.status == "Pending" ? "Edit" : "Remove"} 
+                    </button> : ""
+                }
+                { props.order.status !== "Pending" ? <button className="copyToCartButton" value={props.id}> Copy To Cart</button> : ""}
             </td>
             <td className="Pr_Or_Status">{props.order.status}</td>
         </tr>
     );
     
 });
+
