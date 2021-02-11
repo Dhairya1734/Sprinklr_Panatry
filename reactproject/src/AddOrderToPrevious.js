@@ -9,7 +9,7 @@ function AddOrderToPrevious(props) {
     let temp_obj={};
     temp_obj.date=new Date();
     let id_num=Number(localStorage.getItem("Order_Id"));
-    temp_obj.no="05"; 
+    temp_obj.no="0" + String((id_num%10)+1); 
     allOrdId="u"+temp_obj.no+id_num.toString();
     id_num++;
     localStorage.setItem("Order_Id", id_num.toString());

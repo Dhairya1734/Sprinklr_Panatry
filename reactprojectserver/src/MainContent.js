@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import OnWay from './OnWay.js';
 import Processing from './Processing.js'
 import Pending from './Pending.js'
@@ -13,7 +13,6 @@ import Pending from './Pending.js'
             on_way_ord : JSON.parse(localStorage.getItem("On_Way_Order")),
             delivered_ord : JSON.parse(localStorage.getItem("Delivered_order")),
             all_ord : JSON.parse(localStorage.getItem("all_order")),
-
         };
         console.log("Constructor main content");
         this.updateStatus = this.updateStatus.bind(this);
@@ -27,7 +26,6 @@ import Pending from './Pending.js'
         this.moveToOnWayHandler = this.moveToOnWayHandler.bind(this);
         this.moveToDeliveredHandler = this.moveToDeliveredHandler.bind(this);
     };
-
     updateStatus(key,value){
         let newAllOrd = {...this.state.all_ord};
         //console.log(newAllOrd[key]["status"]);
@@ -36,49 +34,42 @@ import Pending from './Pending.js'
         this.setState( { all_ord :  newAllOrd} );
         
     }
-
     deleteFromPendig(key){
         let newPenOrder = [...this.state.pen_ord];
         newPenOrder.splice(newPenOrder.indexOf(key),1);
         localStorage.setItem("Pending_Order",JSON.stringify(newPenOrder));
         this.setState({pen_ord : newPenOrder});
     }
-
     addToProcessing(key){
         let newProcessing = [...this.state.processing_ord];
         newProcessing.push(key);
         localStorage.setItem("Processing_Order",JSON.stringify(newProcessing));
         this.setState({processing_ord : newProcessing});
     }
-
     deleteFromProcessing(key){
         let newProcessing = [...this.state.processing_ord];
         newProcessing.splice(newProcessing.indexOf(key),1);
         localStorage.setItem("Processing_Order",JSON.stringify(newProcessing));
         this.setState({processing_ord : newProcessing});
     }
-
     addToOnWay(key){
         let newOnWay = [...this.state.on_way_ord];
         newOnWay.push(key);
         localStorage.setItem("On_Way_Order",JSON.stringify(newOnWay));
         this.setState({ on_way_ord : newOnWay});
     }
-
     deleteFromOnWay(key){
         let newOnWay = [...this.state.on_way_ord];
         newOnWay.splice(newOnWay.indexOf(key),1);
         localStorage.setItem("On_Way_Order",JSON.stringify(newOnWay));
         this.setState({ on_way_ord : newOnWay});
     }
-
     addToDeliverd(key){
         let newDelivered = [...this.state.delivered_ord];
         newDelivered.push(key);
         localStorage.setItem("Delivered_order",JSON.stringify(newDelivered));
         this.setState({ delivered_ord : newDelivered});
     }
-
     moveToProcessingHandler(e){
         if(e.target.tagName == "BUTTON"){
             this.addToProcessing(e.target.value);
@@ -86,7 +77,6 @@ import Pending from './Pending.js'
             this.deleteFromPendig(e.target.value);
         }
     } 
-
     moveToOnWayHandler(e){
         if(e.target.tagName == "BUTTON"){
             this.addToOnWay(e.target.value);
@@ -94,7 +84,6 @@ import Pending from './Pending.js'
             this.deleteFromProcessing(e.target.value);
         }
     }
-
     moveToDeliveredHandler(e){
         if(e.target.tagName == "BUTTON"){
             this.addToDeliverd(e.target.value);
@@ -102,9 +91,6 @@ import Pending from './Pending.js'
             this.deleteFromOnWay(e.target.value);
         }
     }
-
-
-
     render() { 
         return(
             <section className="Content">
@@ -125,8 +111,16 @@ import Pending from './Pending.js'
 export default MainContent; */
 
 export default function MainContent(props){
+    const [items, setItems] = useState()
+    useEffect(() => {
+        window.fetch('https://raw.githubusercontent.com/Dhairya1734/Sprinklr_Panatry/main/itemdata.json',{mode : 'cors', method : 'GET'})
+        .then(res => res.json())
+        .then(data => setItems(data))
+        .catch(() => console.log("Error"));
+    }, []);
+    // console.log(items);
     let [state,setState] = useState({
-        "items" : JSON.parse(localStorage.getItem("items")),
+        //"items" : JSON.parse(localStorage.getItem("items")),
         "pen_ord" : JSON.parse(localStorage.getItem("Pending_Order")),
         "processing_ord" : JSON.parse(localStorage.getItem("Processing_Order")),
         "on_way_ord" : JSON.parse(localStorage.getItem("On_Way_Order")),
@@ -219,13 +213,13 @@ export default function MainContent(props){
     return(
         <section className="Content">
             <div className="Order_Status" id="onWay" onClick={moveToDeliveredHandler}>
-                <OnWay items={state.items} on_way_ord={state.on_way_ord} all_ord={state.all_ord} table={props.table}/>
+                <OnWay items={items} on_way_ord={state.on_way_ord} all_ord={state.all_ord} table={props.table}/>
             </div>
             <div className="Order_Status" id="processing" onClick={moveToOnWayHandler}>
-                <Processing items={state.items} processing_ord={state.processing_ord} all_ord={state.all_ord} table={props.table} />
+                <Processing items={items} processing_ord={state.processing_ord} all_ord={state.all_ord} table={props.table} />
             </div>
             <div className="Order_Status" id="pending" onClick={moveToProcessingHandler}>
-                <Pending items={state.items} pen_ord={state.pen_ord} all_ord={state.all_ord} table={props.table}/>
+                <Pending items={items} pen_ord={state.pen_ord} all_ord={state.all_ord} table={props.table}/>
             </div>
         </section>
     );

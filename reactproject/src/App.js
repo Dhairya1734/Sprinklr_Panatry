@@ -1,24 +1,22 @@
-import Header from './Header.js'
+import Header from './Header'
 import Maincontenet from './Maincontent.js'
 import './client.css';
-import { createStore } from 'redux';
-import rootReducer from './Reducer.js';
-import { Provider } from 'react-redux';
+// import { createStore } from 'redux';
+// import rootReducer from './Reducer.js';
+// import { Provider } from 'react-redux';
 
-
-let store = createStore(rootReducer);
+// let store = createStore(rootReducer);
 
 function App() {
+  console.log("Application");
   return (
-    <Provider store={store}>
       <div className="App">
         <Header />
         <Maincontenet />
       </div>
-    </Provider>
   );
 }
 
-store.subscribe(App);
+// store.subscribe(App);
 
 export default App;

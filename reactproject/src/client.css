@@ -10,6 +10,7 @@
     margin: 5px;
     border: 1px solid blue;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .Inline_Flex{
@@ -299,10 +300,10 @@ button{
 
 .Previous_Order_Section{
     box-sizing: border-box;
-    border: 2px solid blue;
     width:90%;
     height: 90%;
     padding: 15px;
+    overflow: auto;
 }
 
 .Previous_Order_Table{

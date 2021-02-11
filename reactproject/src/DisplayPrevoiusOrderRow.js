@@ -9,9 +9,11 @@ export default React.memo(function DisplayPreviousOrderRow(props) {
             <td className="Pr_Or_Time">{props.order.date.toTimeString().split(' ')[0]}</td>
             <td className="Pr_Or_Items">
                 <table className="sub_table">
+                    <tbody>
                     {Object.keys(props.order).map( (key) => {
-                        return (key !== "id" && key!=="date" && key!="status" && key!="no") ? <PreviousOrderSubRow name={props.itemList[key]["itemName"]} qty={props.order[key]}/> : null;
+                        return (key !== "id" && key!=="date" && key!="status" && key!="no") ? <PreviousOrderSubRow key={key} name={props.itemList[key]["itemName"]} qty={props.order[key]}/> : null;
                     })}
+                    </tbody>
                 </table>
             </td>
             <td className = "Pr_Or_Edit">

@@ -69,7 +69,7 @@ export default function DisplayPreviousOrder(props) {
                         <tbody>
                             {
                                 Object.keys(state.all_ord).map( (key) => {
-                                    return <DisplayPreviousOrderRow id={key} order = {state.all_ord[key] } itemList = {props.itemList}/>
+                                    return <DisplayPreviousOrderRow key={key} id={key} order = {state.all_ord[key] } itemList = {props.itemList}/>
                                 })
                             }
                         </tbody>

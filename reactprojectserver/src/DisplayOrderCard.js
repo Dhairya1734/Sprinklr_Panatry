@@ -12,7 +12,7 @@ export default React.memo(function DisplayOrderCard(props){
                 <table className = "List">
                     <tbody>
                         {Object.keys(props.all_ord[props.id]).map( name => {
-                            return (name !== "no" && name!="date" && name!="status" && name!="id") ? <TableRow key={name} name={props.items[name]["itemName"]} qty={props.all_ord[props.id][name]}/> : ""
+                            return (name !== "no" && name!="date" && name!="status" && name!="id") ? <TableRow key={name} name={ props.items ?  props.items[name]["itemName"] : ""} qty={props.all_ord[props.id][name]}/> : null
                         })}
                     </tbody>
                 </table>

@@ -6,7 +6,7 @@ function addQty(key,cart){
     if(newCart.get(key) === undefined)
         newCart.set(key,1);
     else
-        newCart.set(key,cart.get(key)+1);
+        newCart.set(key,newCart.get(key)+1);
     return newCart;
 }
 
@@ -18,7 +18,6 @@ function removeItemFromCart(key,cart){
 
 function subtractQty(key,cart){
     let newCart = new Map(cart);
-    console.log("In Func subtractQty " , cart, key);
     if(newCart.get(key) === 1)
         return removeItemFromCart(key,newCart);
     else{
