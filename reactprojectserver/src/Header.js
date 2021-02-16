@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function returnList(num){
     let allList=[];
@@ -8,22 +9,28 @@ function returnList(num){
     return allList;
 }
 
-export default React.memo(function Header(props){
+function Header(props){
 
     return (
-        <header id="Heading">
-            <span id="Heading_name">Sprinklr Pantry</span>
-            <section className="Search">
+        <header id="heading">
+            <span id="headingName">Sprinklr Pantry</span>
+            <section className="search">
                 <label> Table Number: 
-                    <select className="Find_Table" onChange ={props.handler} name="Find_Table" > 
+                    <select className="findTable" onChange ={props.handler} name="findTable" > 
                         <option key="all" value="all"> All</option>
                         {returnList(10)}
                     </select>
                 </label>
-                    {/* {<button className="Search_Button" onClick = {(e) => console.log(document.querySelector('.Find_Table').value)}> OK </button>} */}
+                    {/* {<button className="searchButton" onClick = {(e) => console.log(document.querySelector('.Find_Table').value)}> OK </button>} */}
             </section>
         </header>
 
     );
 
-});
+};
+
+Header.propTypes = {
+    handler : PropTypes.func.isRequired,
+}
+
+export default React.memo(Header);

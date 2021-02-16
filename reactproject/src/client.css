@@ -1,4 +1,4 @@
-.BoxType{
+.boxType{
     display: block;
     box-sizing: border-box;
 }
@@ -13,13 +13,7 @@
     object-fit: cover;
 }
 
-.Inline_Flex{
-    display: inline-flex;
-    flex-wrap: wrap;  
-    justify-content: center;
-}
-
-.Create_Box{
+.createBox{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -32,11 +26,11 @@
     border-radius: 10px;
 }
 
-.Show_box:hover{
+.showBox:hover{
     box-shadow: 5px 5px 10px deeppink;
 }
 
-.Item_Name{
+.itemName{
     display: block;
     font-size: 20px;
     color: blue;
@@ -44,11 +38,11 @@
     text-align: center; 
 }
 
-.Nav_Item_Name{
+.navItemName{
     display: block;
 }
 
-.AddButton{
+.addButton{
     box-sizing: border-box;
     width: 100%;
     height: 15%;
@@ -64,66 +58,56 @@
     color: white;
 }
 
-.Main_Nav{
+.mainNav{
     margin: 10px 0px;
 }
 
-.White{
+.white{
     color: white;
 }
 
-.Change_Qty{
+.changeQty{
     font-size: 1.25rem;
     background-color: inherit;
 }
 
-.Display_Qty{
-    border-radius: 10%;
-    text-align: center;
-    width: 100%;
-}
-
-.Cancel{
+.cancel{
     color: red;
     font-size: 1.25rem;
     background-color: inherit;
 }
 
-.table_sr_no{
+.tableSrNo{
     width:10%;
     text-align: center;
 }
 
-.table_item_name{
+.tablItemName{
     width:43%;
     text-align: center;
 }
 
-.table_item_add{
+.tableItemAdd{
     width:10%;
     text-align: right;
 }
 
-.table_item_qty{
+.tableItemQty{
     width:25%;
     text-align: center;
 }
 
-.table_item_subtract{
+.tableItemSubtract{
     width:10%;
     text-align: left;
 }
 
-.table_item_remove{
+.tableItemRemove{
     width:2%;
     text-align: center;
 }
 
-.Example_row{
-    display: none;
-}
-
-#Heading{
+#heading{
     color: #EEFBFB;
     min-height: 80px;
     text-align: center;
@@ -134,13 +118,13 @@
     box-sizing: border-box;
 }
 
-#Content{
+#content{
     display: flex;
     height: 90%;
     box-sizing: border-box;
 }
 
-#Navigation{
+#navigation{
     width: 15%;
     background-color: #4DA8DA;
     padding-top: 25px;
@@ -150,7 +134,8 @@
     overflow: auto;
 }
 
-#LeftContent{
+#leftContent{
+    position: relative;
     width: 65%;
     display: flex;
     flex-wrap: wrap;
@@ -159,7 +144,7 @@
     align-content: flex-start;
 }
 
-#RightContent{
+#rightContent{
     width: 20%;
     display: flex;
     flex-direction: column;
@@ -173,7 +158,7 @@
     
 }
 
-#RightSectionTitle{
+#rightSectionTitle{
     display: flex;
     justify-content: center;
     font-size: 20px;
@@ -186,18 +171,14 @@
     margin-bottom: 20px;
 }
 
-#SelectedTable{
+#selectedTable{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     flex-grow: 1;
 }
 
-#Change_Qty_Neg{
-    display: inline;
-}
-
-#SubmitButtonSection{
+#submitButtonSection{
     align-self: flex-end;
     height: 5%;
     width: 100%;
@@ -212,7 +193,7 @@
     justify-content: center;
 }
 
-#SubmitButton{
+#submitButton{
     padding: 5px 10px;
     color: blanchedalmond;
     background-color: inherit;
@@ -248,7 +229,7 @@ strong{
     font-size: 1.75rem;
 }
 
-.Navi_Item_Head:hover{
+.naviItemHead:hover{
     background-color: white;
     color: #4DA8DA;
     padding: 10px 30px;
@@ -256,7 +237,7 @@ strong{
     padding-left: 20px;
 }
 
-.Navi_Item_Head:scope{
+.naviItemHead:scope{
     background-color: white;
     color: #4DA8DA;
     padding: 10px 30px;
@@ -269,20 +250,20 @@ button{
     font-family: inherit;
 }
 
-#Display_Items button{
+#displayItems button{
     background-color: inherit;
     font-family: inherit;
 }
 
-.Previous_Order_Display{
+.previousOrderDisplay{
     display: flex;
-    position: absolute;
+    position: fixed;
     height: 80%;
     width: 80%;
+    left: 10%;
+    top : 10%;
     background-color: white;
     z-index: 1;
-    left: 10%;
-    top: 10%;
     overflow: auto;
     justify-content: center;
     align-items: center;
@@ -290,7 +271,7 @@ button{
     flex-direction: column;
 }
 
-.Cancel_Button{
+.cancelButton{
     position: absolute;
     right: 5px;
     top: 5px;
@@ -298,7 +279,7 @@ button{
     background-color: inherit;
 }
 
-.Previous_Order_Section{
+.previousOrderSection{
     box-sizing: border-box;
     width:90%;
     height: 90%;
@@ -306,49 +287,49 @@ button{
     overflow: auto;
 }
 
-.Previous_Order_Table{
+.previousOrderTable{
     width: 100%;
     overflow: auto; 
     align-self: flex-start; 
     border-collapse: collapse; 
 }
 
-.Pr_Or_Date{
+.prOrDate{
     width: 15%;
     text-align: center;
     border: 2px solid blue;
 }
 
-.Pr_Or_Time{
+.prOrTime{
     width: 15%;
     text-align: center;
     border: 2px solid blue;
 }
 
-.Pr_Or_Status{
+.prOrStatus{
     width: 15%;
     text-align: center;
     border: 2px solid blue;
 }
 
-.Pr_Or_Edit{
+.prOrEdit{
     width: 15%;
     text-align: center;
     border: 2px solid blue;
 }
 
-.Pr_Or_Items{
+.prOrItems{
     text-align: center;
     border: 2px solid blue;
 }
 
-.cart_table{
+.cartTable{
     width: 100%;
     overflow: auto;
     align-self: flex-start;
 }
 
-.sub_table{
+.subTable{
     width: 100%;
     
 }
@@ -373,9 +354,45 @@ button{
 
 .copyToCartButton{
     width: 80%;
-    background-color: green; 
+    background-color: #aadd11; 
     font-family: inherit; 
     color: white; 
     border-radius: 5px;
     margin: 5px;
 }
+
+.animation{
+    animation-name :  moveToCart;
+    animation-duration : 1s;
+    position: fixed;
+    animation-timing-function: ease-out;
+    z-index: 2;
+}
+
+@keyframes moveToCart{
+    from {
+        left: 50%;
+        top : 50%;
+    }
+    to {
+        position: fixed;
+        left : 80%;
+        top:20%;
+        transform: rotate(360deg);
+    }
+}
+
+.loading{
+    color: white;
+    font-weight: bold;
+}
+
+.previousOrderItemTableItemName{
+    width: 90%;
+    text-align: center;
+}
+
+.previousOrderItemRow{
+    width: 100%;
+}
+

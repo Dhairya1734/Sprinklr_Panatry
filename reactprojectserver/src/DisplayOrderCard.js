@@ -1,23 +1,40 @@
 import React from 'react';
-import TableRow from './TableRow.js';
+import TableRow from './TableRow';
+import PropTypes from 'prop-types';
 
-export default React.memo(function DisplayOrderCard(props){
+function DisplayOrderCard(props){
     console.log("Card");
     return(
-        <div className = "Order" datasettable = {props.all_ord[props.id]["no"]} >
-            <header className="Name">
-                Table No {props.all_ord[props.id]["no"]}
+        <div className = "order" datasettable = {props.allOrd[props.id]["no"]} >
+            <header className="name">
+                Table No {props.allOrd[props.id]["no"]}
             </header>
-            <section className = "Items">
-                <table className = "List">
+            <section className = "items">
+                <table className = "list">
                     <tbody>
-                        {Object.keys(props.all_ord[props.id]).map( name => {
-                            return (name !== "no" && name!="date" && name!="status" && name!="id") ? <TableRow key={name} name={ props.items ?  props.items[name]["itemName"] : ""} qty={props.all_ord[props.id][name]}/> : null
+                        {Object.keys(props.allOrd[props.id]).map( name => {
+                            return (name !== "no" && name!="date" && name!="status" && name!="id") ? <TableRow key={name} name={ props.items ?  props.items[name]["itemName"] : ""} qty={props.allOrd[props.id][name]} type="SERVER_TYPE"/> : null
                         })}
                     </tbody>
                 </table>
             </section>
-            <button className="done On_Way" value={props.id}> {props.onButton} </button>
+            <button className="done" value={props.id}> {props.onButton} </button>
         </div>
     );
-});
+};
+
+DisplayOrderCard.propTypes = {
+    id: PropTypes.string,
+    allOrd: PropTypes.object,
+    onButton: PropTypes.string.isRequired,
+    items: PropTypes.objectOf(
+        PropTypes.objectOf(
+            PropTypes.string,
+            PropTypes.string,
+            PropTypes.string,
+        )
+    )
+
+}
+
+export default React.memo(DisplayOrderCard);

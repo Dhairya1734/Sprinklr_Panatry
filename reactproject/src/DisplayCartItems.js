@@ -1,43 +1,13 @@
-import React, { Component } from 'react';
-import DisplayCartRow from "./DisplayCartRow.js";
-import {Provider, useDispatch , useSelector } from 'react-redux'
-
-/* export default class DisplayCartItems extends Component {
-    constructor(props) {
-        super(props);
-        this.DisplayItems = this.DisplayItems.bind(this);
-    }
-
-    DisplayItems(cart){
-        let allRowsInCart = [];
-        let ctr = 1;
-        for(let [key,value] of cart){
-            allRowsInCart.push(<DisplayCartRow key={key.toString()+value.toString()+ctr.toString()} itemId={key} id={key.toString()+value.toString()} srNo={ctr} name={this.props.itemList[key].itemName} qty={value}/>);
-            ctr++;
-        }
-        return allRowsInCart;
-    }
-
-
-    render() { 
-
-        console.log("DisplayCartItem Start");
-
-        return ( 
-            <table className="White cart_table">
-                <tbody>
-                    {this.DisplayItems(this.props.cart)}
-                </tbody>
-            </table>
-        );
-    }
-} */
+import React, { useCallback } from 'react';
+import DisplayCartRow from "./DisplayCartRow";
+import {useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
  
-export default React.memo(function DisplayCartItems(props){
+const DisplayCartItems= React.memo((props) => {
 
     const cart = useSelector(state => state.cart);
 
-    const DisplayItems = (cart) => {
+    const DisplayItems = useCallback((cart) => {
         let allRowsInCart = [];
         let ctr = 1;
         for(let [key,value] of cart){
@@ -45,13 +15,23 @@ export default React.memo(function DisplayCartItems(props){
             ctr++;
         }
         return allRowsInCart;
-    }
+    },[cart]);
 
     return ( 
-        <table className="White cart_table">
+        <table className="White cartTable">
             <tbody>
                 {DisplayItems(cart)}
             </tbody>
         </table>
     );
 });
+
+DisplayCartItems.propTypes = {
+    itemList : PropTypes.objectOf(
+        PropTypes.objectOf(
+            PropTypes.string,
+            PropTypes.string,
+            PropTypes.string))
+}
+
+export default DisplayCartItems;

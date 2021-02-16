@@ -1,14 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function DisplayNavigationItemHeading(props) {
+function DisplayNavigationItemHeading(props) {
     return (
         <>
         <br />
         <li key={props.id}>
-            <a className="White Navi_Item_Head" href={"#"+props.id}>{props.name}</a>
+            <a className="white naviItemHead" href={"#"+props.id}>{props.name}</a>
         </li>
         <br />
         <hr />
         </>
     );
+};
+
+DisplayNavigationItemHeading.propTypes = {
+    id : PropTypes.string.isRequired,
+    name : PropTypes.string.isRequired,
 }
+
+export default DisplayNavigationItemHeading;

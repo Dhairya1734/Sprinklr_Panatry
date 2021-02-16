@@ -1,12 +1,13 @@
 import { combineReducers } from "redux";
 
-function addQty(key,cart){
-    let newCart = new Map(cart);
+function addQty(key,state){
+   let newCart = new Map(state);
 
     if(newCart.get(key) === undefined)
         newCart.set(key,1);
     else
         newCart.set(key,newCart.get(key)+1);
+    console.log(newCart);
     return newCart;
 }
 
@@ -31,7 +32,6 @@ function resetCart(){
 }
 
 function copyToCart(tempObj){
-    //let tempObj = {};
     let newCart = new Map();
     for(let key in tempObj){
         if(key !== "id" && key!=="date" && key!="status" && key!="no"){
@@ -46,7 +46,7 @@ function cartAction(state = new Map() , action) {
 
     switch (action.type){
         case 'ADD_QTY_TO_CART':
-            return addQty(action.key , state);
+            return addQty(action.key,state);
         case 'SUB_QTY_FROM_CART':
             return subtractQty(action.key, state);
         case 'REMOVE_FROM_CART':

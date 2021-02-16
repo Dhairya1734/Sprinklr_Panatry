@@ -1,41 +1,36 @@
 import React from 'react';
-import DisplayOrderCard from './DisplayOrderCard.js';
+import DisplayOrderCard from './DisplayOrderCard';
+import {useSelector } from 'react-redux'
+import PropTypes from 'prop-types';
 
-export default React.memo(function OnWay(props){
+function OnWay(props){
+
+    const onWayOrder = useSelector( state => state.onWayOrder);
+
     return (
         <>
         <header>
-            <span className="Order_Status_Header"><strong>On Way</strong></span>
+            <span className="orderStatusHeader"><strong>On Way</strong></span>
         </header>
-        {Object.keys(props.on_way_ord).map( key => {
-            return ( props.table == "all" || props.all_ord[props.on_way_ord[key]]["no"].toString() == props.table.toString()) ?
-            <DisplayOrderCard key={props.on_way_ord[key]} id={props.on_way_ord[key]} all_ord={props.all_ord} onButton={"Delivery Successful"} items= {props.items}/> : "";
+        {Object.keys(onWayOrder).map( key => {
+            return ( props.table == "all" || props.allOrd[onWayOrder[key]]["no"].toString() == props.table.toString()) ?
+            <DisplayOrderCard key={onWayOrder[key]} id={onWayOrder[key]} allOrd={props.allOrd} onButton={"Delivery Successful"} items= {props.items}/> : "";
         })}
         <section id="displayOnWay"></section>
         </>
     );
-});
+};
 
-/* class OnWay extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
-    
-    render() { 
-        return ( 
-        <>
-            <header>
-                <span className="Order_Status_Header"><strong>On Way</strong></span>
-            </header>
-            {Object.keys(this.props.on_way_ord).map( key => {
-                return ( this.props.table == "all" || this.props.all_ord[this.props.on_way_ord[key]]["no"].toString() == this.props.table.toString()) ?
-                <DisplayOrderCard key={this.props.on_way_ord[key]} id={this.props.on_way_ord[key]} all_ord={this.props.all_ord} onButton={"Delivered"} items= {this.props.items}/> : "";
-            })}
-            <section id="displayOnWay"></section>
-        </> 
-        );
-    }
+OnWay.propTypes = {
+    items: PropTypes.objectOf(
+        PropTypes.objectOf(
+            PropTypes.string,
+            PropTypes.string,
+            PropTypes.string,
+        )
+    ),
+    allOrd: PropTypes.object,
+    table : PropTypes.string,
 }
- 
-export default OnWay; */
+
+export default React.memo(OnWay);

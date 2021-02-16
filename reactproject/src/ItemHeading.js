@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ItemCard from './ItemCard';
+import PropTypes from 'prop-types';
 
-export default React.memo(function ItemHeading(props){
+const ItemHeading = React.memo((props) => {
 
     return (
         <>
@@ -12,6 +13,18 @@ export default React.memo(function ItemHeading(props){
 
 });
 
+ItemHeading.propTypes = {
+    id : PropTypes.string,
+    content : PropTypes.shape({
+        visibleName : PropTypes.string,
+        visbleId : PropTypes.string,
+        itemList : PropTypes.arrayOf(PropTypes.string)
+    }),
+    itemList : PropTypes.objectOf(
+        PropTypes.objectOf(
+            PropTypes.string,
+            PropTypes.string,
+            PropTypes.string)),
+}
 
-
-{/*  */}
+export default ItemHeading;

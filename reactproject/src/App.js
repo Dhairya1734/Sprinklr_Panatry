@@ -1,22 +1,19 @@
 import Header from './Header'
-import Maincontenet from './Maincontent.js'
 import './client.css';
-// import { createStore } from 'redux';
-// import rootReducer from './Reducer.js';
-// import { Provider } from 'react-redux';
+import React , {lazy, Suspense} from 'react';
 
-// let store = createStore(rootReducer);
+const Maincontenet= lazy(() => import('./Maincontent'));
 
 function App() {
   console.log("Application");
   return (
-      <div className="App">
-        <Header />
+    <div className="App">
+      <Header />
+      <Suspense fallback = {<div className="loading"> This is Loading </div>}>
         <Maincontenet />
-      </div>
+      </Suspense>
+    </div>
   );
 }
-
-// store.subscribe(App);
 
 export default App;
