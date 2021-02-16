@@ -1,19 +1,38 @@
 import React from 'react';
-import DisplayOrderCard from './DisplayOrderCard.js'
+import DisplayOrderCard from './DisplayOrderCard'
+import {useSelector } from 'react-redux'
+import PropTypes from 'prop-types';
 
-export default React.memo(function Pending(props){
+
+function Pending(props){
+    const pendingOrder = useSelector( state => state.pendingOrder);
     return (
         <>
         <header> 
-            <span className="Order_Status_Header"><strong>Pending</strong></span>
+            <span className="orderStatusHeader"><strong>Pending</strong></span>
         </header>
         <section id="displayPendingId">
-            {Object.keys(props.pen_ord).map( key => {
-                return ( props.table == "all" || props.all_ord[props.pen_ord[key]]["no"].toString() == props.table.toString()) ?
-                <DisplayOrderCard key={key} id={props.pen_ord[key]} all_ord={props.all_ord} onButton={"Move To Processing"} items= {props.items}/> : "";
+            {Object.keys(pendingOrder).map( key => {
+                return ( props.table == "all" || props.allOrd[pendingOrder[key]]["no"].toString() == props.table.toString()) ?
+                <DisplayOrderCard key={key} id={pendingOrder[key]} allOrd={props.allOrd} onButton={"Move To Processing"} items= {props.items}/> : "";
             })}
-            {/* <DisplayOrderCard items={props.items} pen_ord={props.pen_ord}/> */}
         </section>
         </>
     );
-})
+};
+
+Pending.propTypes = {
+    items: PropTypes.objectOf(
+        PropTypes.objectOf(
+            PropTypes.string,
+            PropTypes.string,
+            PropTypes.string,
+        )
+    ),
+    allOrd: PropTypes.object,
+    table : PropTypes.string,
+}
+
+
+
+export default React.memo(Pending);

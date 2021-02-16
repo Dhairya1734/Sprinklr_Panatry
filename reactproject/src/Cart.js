@@ -1,88 +1,53 @@
-import React, { useCallback } from 'react';
-import DisplayCartItems from './DisplayCartItems.js'
+import {React, useCallback} from 'react';
+import DisplayCartItems from './DisplayCartItems'
 import AddOrderToPrevious from './AddOrderToPrevious'
+import {useDispatch , useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 
-/* export default class Cart extends React.Component{
-
-    constructor(props){
-        super(props);
-        this.cartHandlers=this.cartHandlers.bind(this);
-        this.addOredrToPrevious=this.addOredrToPrevious.bind(this);
-    }
-
-    cartHandlers(e){
-        let key=e.target.value;
-        if(e.target.parentElement.className == "table_item_subtract"){
-            this.props.handler.subtractQtyHandler(key);
-        }
-        else if(e.target.parentElement.className == "table_item_add"){
-            this.props.handler.addQtyHandler(key);
-        }
-        else if(e.target.parentElement.className == "table_item_remove"){
-            this.props.handler.removeItemFromCartHandler(key);
-        }
-        console.log(key);
-    }
-
-    addOredrToPrevious(e){
-        AddOrderToPrevious({ cart : this.props.cart });
-        this.props.resetCart();
-    }
-
-    render(){
-
-        console.log("Cart Start");
-
-        return(
-            <section className="BoxType" id="RightContent">
-                <header id="RightSectionTitle">
-                    <strong>Your Items</strong>
-                </header>
-                {console.log("This is updated")}
-                <section id="SelectedTable" onClick={this.cartHandlers}>
-                    <DisplayCartItems cart = {this.props.cart} itemList = {this.props.itemList}/>
-                </section>
-                <section id="SubmitButtonSection">
-                    <button id="SubmitButton" onClick={this.addOredrToPrevious}> Place Order</button>
-                </section>
-            </section>
-        );
-    }
-} */
 
 export default function Cart(props) {
 
-    let cartHandlers = (e) => {
-        let key=e.target.value;
-        if(e.target.parentElement.className == "table_item_subtract"){
-            props.handler.subtractQtyHandler(key);
-        }
-        else if(e.target.parentElement.className == "table_item_add"){
-            props.handler.addQtyHandler(key);
-        }
-        else if(e.target.parentElement.className == "table_item_remove"){
-            props.handler.removeItemFromCartHandler(key);
-        }
-        console.log(key);
-    };
+    const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart);
 
-    let addOredrToPrevious = (e) => {
-        AddOrderToPrevious({ cart : props.cart });
-        props.resetCart();
-    };
+    let cartHandlers = useCallback((e) => {
+        let key=e.target.value;
+        if(e.target.parentElement.className == "tableItemSubtract"){
+            dispatch ({type : "SUB_QTY_FROM_CART" , key : key})
+        }
+        else if(e.target.parentElement.className == "tableItemAdd"){
+            dispatch ({type : "ADD_QTY_TO_CART" , key : key})
+        }
+        else if(e.target.parentElement.className == "tableItemRemove"){
+            dispatch ({type : "REMOVE_FROM_CART" , key : key})
+        }
+    },[]);
+
+    let addOredrToPrevious = useCallback((e) => {
+        AddOrderToPrevious({cart : cart});
+        dispatch ({type : "RESET_CART"});
+    },[cart]);
     
     return (
-        <section className="BoxType" id="RightContent">
-            <header id="RightSectionTitle">
+        <section className="boxType" id="rightContent">
+            <header id="rightSectionTitle">
                 <strong>Your Items</strong>
             </header>
             {console.log("This is updated")}
-            <section id="SelectedTable" onClick={cartHandlers}>
-                <DisplayCartItems cart = {props.cart} itemList = {props.itemList}/>
+            <section id="selectedTable" onClick={cartHandlers}>
+                <DisplayCartItems itemList = {props.itemList}/>
             </section>
-            <section id="SubmitButtonSection">
-                <button id="SubmitButton" onClick={addOredrToPrevious}> Place Order</button>
+            <section id="submitButtonSection">
+                <button id="submitButton" onClick={addOredrToPrevious}> Place Order</button>
             </section>
         </section>
     );
+}
+
+Cart.propTypes={
+    itemList : PropTypes.objectOf(
+        PropTypes.objectOf(
+            PropTypes.string,
+            PropTypes.string,
+            PropTypes.string))
 }

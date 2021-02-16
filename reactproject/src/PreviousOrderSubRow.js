@@ -1,10 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import changeStyle from "./hocStyleForItemTable";
 
-export default React.memo(function PreviousOrderSubRow(props) {
+const PreviousOrderSubRow = React.memo((props) => {
     return (
-        <tr style = { {width : "100%"} }>
-            <td style= { {width: "90%" , textAlign: "center" } } > {props.name} </td>
-            <td > {props.qty} </td>
+        <tr className={props.allClassNames.rowClassName}>
+            <td className = {props.allClassNames.cellClassName[0]} > {props.name} </td>
+            <td className = {props.allClassNames.cellClassName[1]} > {props.qty} </td>
         </tr>
     );
 });
+
+PreviousOrderSubRow.propTypes = {
+    name : PropTypes.string,
+    qty : PropTypes.number,
+}
+
+export default changeStyle(PreviousOrderSubRow);

@@ -1,13 +1,17 @@
-import logo from './logo.svg';
-import Header from './Header.js'
-import Maincontenet from './Maincontent.js'
+import Header from './Header'
 import './client.css';
+import React , {lazy, Suspense} from 'react';
+
+const Maincontenet= lazy(() => import('./Maincontent'));
 
 function App() {
+  console.log("Application");
   return (
     <div className="App">
       <Header />
-      <Maincontenet />
+      <Suspense fallback = {<div className="loading"> This is Loading </div>}>
+        <Maincontenet />
+      </Suspense>
     </div>
   );
 }

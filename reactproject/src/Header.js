@@ -1,11 +1,10 @@
 import React from 'react';
 
-export default function Header(){
-
-    console.log("Heading Sprinkl Panatry");
+export default React.memo(function Header(){
+    console.log("Header")
     return(
-    <header id="Heading">
+    <header id="heading">
         Sprinklr Pantry
     </header>
     );
-};
+});
