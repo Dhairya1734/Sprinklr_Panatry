@@ -44,7 +44,7 @@
 }
 
 .Nav_Item_Name{
-    display: none;
+    display: block;
 }
 
 .AddButton{
@@ -274,7 +274,7 @@ button{
 }
 
 .Previous_Order_Display{
-    display: none;
+    display: flex;
     position: absolute;
     height: 80%;
     width: 80%;
@@ -350,6 +350,7 @@ button{
 
 .editButton{
     width: 80%;
+    height: 100%;
     background-color: green; 
     font-family: inherit; 
     color: white; 
