@@ -4,7 +4,8 @@ import Processing from './Processing'
 import Pending from './Pending'
 import {useDispatch , useSelector } from 'react-redux'
 import PropTypes from 'prop-types';
-import {ACTIONS} from './Reducer'
+import {ACTIONS} from './Reducer';
+import {LOCALSTORAGE} from './localStorage'
 
 function saveToLocalStorage(key,array) {
     localStorage.setItem(key,JSON.stringify(array));
@@ -19,10 +20,10 @@ export default function MainContent(props){
     const onWayOrder = useSelector( state => state.onWayOrder);
     const deliveredOrder = useSelector( state => state.deliveredOrder);
 
-    saveToLocalStorage("Pending_Order",pendingOrder);
-    saveToLocalStorage("Processing_Order",processingOrder);
-    saveToLocalStorage("On_Way_Order",onWayOrder);
-    saveToLocalStorage("Delivered_order",deliveredOrder);
+    saveToLocalStorage(LOCALSTORAGE.PENDING_ORDER ,pendingOrder);
+    saveToLocalStorage(LOCALSTORAGE.PROCESSING_ORDER,processingOrder);
+    saveToLocalStorage(LOCALSTORAGE.ON_WAY_ORDER,onWayOrder);
+    saveToLocalStorage(LOCALSTORAGE.DELIVERED_ORDER,deliveredOrder);
 
     useEffect(() => {
         window.fetch('https://raw.githubusercontent.com/Dhairya1734/Sprinklr_Panatry/main/itemdata.json',{method : 'GET'})
@@ -32,27 +33,30 @@ export default function MainContent(props){
     },[]);
 
     let [state,setState] = useState({
-        "allOrd" : JSON.parse(localStorage.getItem("all_order")),
+        "allOrd" : JSON.parse(localStorage.getItem(LOCALSTORAGE.ALL_ORDER)),
     });
 
-    function checkUpdate(){
+    useEffect(() => {
+        function checkUpdate(){
 
-        console.log("Updated");
-
-        if(localStorage.getItem("order_updated") === "true"){
-            dispatch({type : ACTIONS.COPY_TO_PENDING});
-            setState({allOrd : JSON.parse(localStorage.getItem("all_order"))});
-            localStorage.setItem("order_updated","false");
+            console.log("Updated");
+    
+            if(localStorage.getItem(LOCALSTORAGE.ORDER_UPDATED) === "true"){
+                dispatch({type : ACTIONS.COPY_TO_PENDING});
+                setState({allOrd : JSON.parse(localStorage.getItem(LOCALSTORAGE.ALL_ORDER))});
+                localStorage.setItem(LOCALSTORAGE.ORDER_UPDATED,"false");
+            }
         }
-        setTimeout(checkUpdate,5000);
-    }
-
-    setTimeout(checkUpdate,5000);
+        const timerID = setInterval(checkUpdate, 5000 )
+        return () => {
+            return clearInterval(timerID);
+        }
+    }, [])
 
     let updateStatus = useCallback((key,value) => {
         let newAllOrd = {...state.allOrd};
         newAllOrd[key]["status"]=value;
-        localStorage.setItem("all_order",JSON.stringify(newAllOrd));
+        localStorage.setItem(LOCALSTORAGE.ALL_ORDER,JSON.stringify(newAllOrd));
         setState({...state, allOrd : newAllOrd});
         return newAllOrd;
     },[state.allOrd]);

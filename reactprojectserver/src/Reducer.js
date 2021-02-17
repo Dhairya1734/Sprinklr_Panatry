@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { LOCALSTORAGE } from './localStorage'
 
 export const ACTIONS = {
     COPY_TO_PENDING : 'COPY_TO_PENDING',
@@ -29,11 +30,11 @@ function copyFromArray(array) {
     return newArray;
 }
 
-function pendingHandler(state = JSON.parse(localStorage.getItem("Pending_Order")), action){
+function pendingHandler(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.PENDING_ORDER)), action){
 
     switch(action.type){
         case ACTIONS.COPY_TO_PENDING:
-            return copyFromArray(JSON.parse(localStorage.getItem("Pending_Order")));
+            return copyFromArray(JSON.parse(localStorage.getItem(LOCALSTORAGE.PENDING_ORDER)));
         case ACTIONS.REMOVE_FROM_PENDING:
             return removeFromArray(action.key,state);
         default:
@@ -41,7 +42,7 @@ function pendingHandler(state = JSON.parse(localStorage.getItem("Pending_Order")
     }
 }
 
-function processingHandler(state = JSON.parse(localStorage.getItem("Processing_Order")), action){
+function processingHandler(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.PROCESSING_ORDER)), action){
 
     switch(action.type){
         case ACTIONS.ADD_TO_PROCESSING:
@@ -53,7 +54,7 @@ function processingHandler(state = JSON.parse(localStorage.getItem("Processing_O
     }
 }
 
-function onWayHandler(state = JSON.parse(localStorage.getItem("On_Way_Order")), action){
+function onWayHandler(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.ON_WAY_ORDER)), action){
 
     switch(action.type){
         case ACTIONS.ADD_TO_ON_WAY:
@@ -65,7 +66,7 @@ function onWayHandler(state = JSON.parse(localStorage.getItem("On_Way_Order")), 
     }
 }
 
-function deliveredHandler(state = JSON.parse(localStorage.getItem("Delivered_order")), action){
+function deliveredHandler(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.DELIVERED_ORDER)), action){
 
     switch(action.type){
         case ACTIONS.ADD_TO_DELIVERED:
