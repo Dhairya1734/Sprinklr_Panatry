@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import {LOCALSTORAGE} from './localStorage'
 
 function AddOrderToPrevious(props) {
 
@@ -7,17 +8,17 @@ function AddOrderToPrevious(props) {
         return ;
     }
 
-    let allOrd=JSON.parse(localStorage.getItem("all_order"));
+    let allOrd=JSON.parse(localStorage.getItem(LOCALSTORAGE.ALL_ORDER));
     
     let allOrdId;
 
     let tempObj={};
     tempObj.date=new Date();
-    let idNum=Number(localStorage.getItem("Order_Id"));
-    tempObj.no="0" + String((idNum%10)+1); 
+    let idNum=Number(localStorage.getItem(LOCALSTORAGE.ORDER_ID));
+    tempObj.no= idNum%10 === 9 ? "10" : "0"+String((idNum%10)+1); 
     allOrdId="u"+tempObj.no+idNum.toString();
     idNum++;
-    localStorage.setItem("Order_Id", idNum.toString());
+    localStorage.setItem(LOCALSTORAGE.ORDER_ID, idNum.toString());
     tempObj.status="Pending";
 
     // Order List
@@ -28,12 +29,12 @@ function AddOrderToPrevious(props) {
 
     console.log(tempObj);
     allOrd[allOrdId]=tempObj;
-    localStorage.setItem("all_order",JSON.stringify(allOrd));
+    localStorage.setItem(LOCALSTORAGE.ALL_ORDER,JSON.stringify(allOrd));
 
-    let penOrd=JSON.parse(localStorage.getItem("Pending_Order"));
+    let penOrd=JSON.parse(localStorage.getItem(LOCALSTORAGE.PENDING_ORDER));
     penOrd.push(allOrdId);
-    localStorage.setItem("Pending_Order",JSON.stringify(penOrd));
-    localStorage.setItem("order_updated","true");
+    localStorage.setItem(LOCALSTORAGE.PENDING_ORDER,JSON.stringify(penOrd));
+    localStorage.setItem(LOCALSTORAGE.ORDER_UPDATED,"true");
     
 }
 

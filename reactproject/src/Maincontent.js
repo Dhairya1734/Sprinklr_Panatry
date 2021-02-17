@@ -5,6 +5,7 @@ import ItemList from './ItemList'
 import { createStore } from 'redux';
 import rootReducer from './Reducer';
 import { Provider,connect } from 'react-redux';
+import { LOCALSTORAGE } from "./localStorage";
 
 let store = createStore(rootReducer);
 
@@ -12,7 +13,7 @@ const Navigation= lazy(() => import('./Navigation'));
 const Cart= lazy(() => import('./Cart'));
 
 export default function Maincontent() {
-    const itemHeading = JSON.parse(localStorage.getItem("heading"));
+    const itemHeading = JSON.parse(localStorage.getItem(LOCALSTORAGE.HEADING));
     const [items, setItems] = useState()
     useEffect(() => {
         window.fetch('https://raw.githubusercontent.com/Dhairya1734/Sprinklr_Panatry/main/itemdata.json', { method: 'GET' })

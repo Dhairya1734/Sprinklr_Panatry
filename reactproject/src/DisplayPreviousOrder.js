@@ -3,13 +3,13 @@ import DisplayPreviousOrderRow from './DisplayPrevoiusOrderRow'
 import {useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
-
+import {LOCALSTORAGE} from './localStorage'
 
 const removeFromPending= (tempId) => {
-    let penOrd=JSON.parse(localStorage.getItem("Pending_Order"));
+    let penOrd=JSON.parse(localStorage.getItem(LOCALSTORAGE.PENDING_ORDER));
     penOrd.splice(penOrd.indexOf(tempId),1);
-    localStorage.setItem("Pending_Order",JSON.stringify(penOrd));
-    localStorage.setItem("order_updated","true");
+    localStorage.setItem(LOCALSTORAGE.PENDING_ORDER,JSON.stringify(penOrd));
+    localStorage.setItem(LOCALSTORAGE.ORDER_UPDATED,"true");
 }
 
 export default function DisplayPreviousOrder(props) {
@@ -17,7 +17,7 @@ export default function DisplayPreviousOrder(props) {
     const dispatch = useDispatch();
 
     const [state,setState] = useState(
-        {"allOrd" : JSON.parse(localStorage.getItem("all_order") , function(key, value) {
+        {"allOrd" : JSON.parse(localStorage.getItem(LOCALSTORAGE.ALL_ORDER) , function(key, value) {
         if (key == 'date') return new Date(value);
         return value;
     })});
@@ -27,7 +27,7 @@ export default function DisplayPreviousOrder(props) {
         let deletedObj = newOrd[e.target.value];
         delete newOrd[e.target.value];
         setState({allOrd: newOrd});
-        localStorage.setItem("all_order",JSON.stringify(newOrd));
+        localStorage.setItem(LOCALSTORAGE.ALL_ORDER,JSON.stringify(newOrd));
         return deletedObj;
     },[state]);
 
