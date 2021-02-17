@@ -3,6 +3,7 @@ import DisplayCartItems from './DisplayCartItems'
 import AddOrderToPrevious from './AddOrderToPrevious'
 import {useDispatch , useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+import { ACTIONS } from "./Reducer";
 
 
 export default function Cart(props) {
@@ -13,19 +14,19 @@ export default function Cart(props) {
     let cartHandlers = useCallback((e) => {
         let key=e.target.value;
         if(e.target.parentElement.className == "tableItemSubtract"){
-            dispatch ({type : "SUB_QTY_FROM_CART" , key : key})
+            dispatch ({type : ACTIONS.SUB_QTY_FROM_CART , key : key})
         }
         else if(e.target.parentElement.className == "tableItemAdd"){
-            dispatch ({type : "ADD_QTY_TO_CART" , key : key})
+            dispatch ({type : ACTIONS.ADD_QTY_TO_CART , key : key})
         }
         else if(e.target.parentElement.className == "tableItemRemove"){
-            dispatch ({type : "REMOVE_FROM_CART" , key : key})
+            dispatch ({type : ACTIONS.REMOVE_FROM_CART , key : key})
         }
     },[]);
 
     let addOredrToPrevious = useCallback((e) => {
         AddOrderToPrevious({cart : cart});
-        dispatch ({type : "RESET_CART"});
+        dispatch ({type : ACTIONS.RESET_CART});
     },[cart]);
     
     return (

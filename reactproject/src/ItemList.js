@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import ItemHeading from './ItemHeading';
 import {useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+import { ACTIONS } from "./Reducer";
 
 let elem=[];
 
@@ -12,10 +13,12 @@ const ItemList = React.memo((props) => {
 
     console.log("ItemList");
 
+    //Commented Code is for animation 
+
     const addToCartHandler = useCallback((e) => {
         if(e.target.className === "addButton"){
             console.log(e.target.value);
-            dispatch ({type : "ADD_QTY_TO_CART" , key : e.target.value});
+            dispatch ({type : ACTIONS.ADD_QTY_TO_CART , key : e.target.value});
             //e.target.parentElement.className = "createBox showBox animation";
             //elem.push([e.target.parentElement,e.target.value]);
             
@@ -23,7 +26,7 @@ const ItemList = React.memo((props) => {
     } ,/* [elem] */ [])
 
     /* const animationEndHandler = useCallback(() => {
-        elem.forEach( key => {key[0].className = "createBox showBox"; dispatch ({type : "ADD_QTY_TO_CART" , key : key[1]});})
+        elem.forEach( key => {key[0].className = "createBox showBox"; dispatch ({type : ACTIONS.ADD_QTY_TO_CART , key : key[1]});})
         elem = [];
     },[elem])
  */

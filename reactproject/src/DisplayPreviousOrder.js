@@ -4,6 +4,7 @@ import {useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import {LOCALSTORAGE} from './localStorage'
+import { ACTIONS } from "./Reducer";
 
 const removeFromPending= (tempId) => {
     let penOrd=JSON.parse(localStorage.getItem(LOCALSTORAGE.PENDING_ORDER));
@@ -45,7 +46,7 @@ export default function DisplayPreviousOrder(props) {
     
             let deletedObj = removeOredrfromPrevious(e);
 
-            dispatch ({type : "COPY_TO_CART" , obj : deletedObj})
+            dispatch ({type : ACTIONS.COPY_TO_CART , obj : deletedObj})
 
             props.displayPreviousListHandler();
     
@@ -57,7 +58,7 @@ export default function DisplayPreviousOrder(props) {
         } else if(e.target.className == "copyToCartButton"){
             let allOrd = {...state.allOrd};
             
-            dispatch ({type : "COPY_TO_CART" , obj : allOrd[e.target.value]})
+            dispatch ({type : ACTIONS.COPY_TO_CART , obj : allOrd[e.target.value]})
             props.displayPreviousListHandler();
         }
     },[])

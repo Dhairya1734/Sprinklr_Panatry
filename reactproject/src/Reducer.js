@@ -1,5 +1,13 @@
 import { combineReducers } from "redux";
 
+export const ACTIONS = {
+    ADD_QTY_TO_CART : 'ADD_QTY_TO_CART',
+    SUB_QTY_FROM_CART : 'SUB_QTY_FROM_CART',
+    REMOVE_FROM_CART : 'REMOVE_FROM_CART',
+    COPY_TO_CART : 'COPY_TO_CART',
+    RESET_CART : 'RESET_CART'
+}
+
 function addQty(key,state){
    let newCart = new Map(state);
 
@@ -45,15 +53,15 @@ function copyToCart(tempObj){
 function cartAction(state = new Map() , action) {
 
     switch (action.type){
-        case 'ADD_QTY_TO_CART':
+        case ACTIONS.ADD_QTY_TO_CART:
             return addQty(action.key,state);
-        case 'SUB_QTY_FROM_CART':
+        case ACTIONS.SUB_QTY_FROM_CART:
             return subtractQty(action.key, state);
-        case 'REMOVE_FROM_CART':
+        case ACTIONS.REMOVE_FROM_CART:
             return removeItemFromCart(action.key, state);
-        case 'COPY_TO_CART':
+        case ACTIONS.COPY_TO_CART:
             return copyToCart(action.obj);
-        case 'RESET_CART':
+        case ACTIONS.RESET_CART:
             return resetCart();
         default:
             return new Map(action.cart);
