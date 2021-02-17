@@ -16,7 +16,7 @@ const ItemList = React.memo((props) => {
     //Commented Code is for animation 
 
     const addToCartHandler = useCallback((e) => {
-        if(e.target.className === "addButton"){
+        if(e.target.dataset.buttonType){
             console.log(e.target.value);
             dispatch ({type : ACTIONS.ADD_QTY_TO_CART , key : e.target.value});
             //e.target.parentElement.className = "createBox showBox animation";

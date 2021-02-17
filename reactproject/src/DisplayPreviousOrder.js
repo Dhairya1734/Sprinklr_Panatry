@@ -33,10 +33,10 @@ export default function DisplayPreviousOrder(props) {
     },[state.allOrd]);
 
     const OnDisplayAllOrder = useCallback((e) => {
-        if(e.target.className == "cancelButton"){
+        if(e.target.dataset.buttonType == "cancelButton"){
             props.displayPreviousListHandler();
         }
-        else if(e.target.className == "editButton"){
+        else if(e.target.dataset.buttonType == "editButton"){
 
             console.log(e.target.value);
     
@@ -51,11 +51,11 @@ export default function DisplayPreviousOrder(props) {
             props.displayPreviousListHandler();
     
     
-        } else if(e.target.className == "removeButton"){
+        } else if(e.target.dataset.buttonType == "removeButton"){
     
             removeOredrfromPrevious(e);
     
-        } else if(e.target.className == "copyToCartButton"){
+        } else if(e.target.dataset.buttonType == "copyToCartButton"){
             const allOrd = {...state.allOrd};
             
             dispatch ({type : ACTIONS.COPY_TO_CART , obj : allOrd[e.target.value]})
@@ -66,7 +66,7 @@ export default function DisplayPreviousOrder(props) {
     return ReactDOM.createPortal(
 
         <div className="previousOrderDisplay" onClick = {OnDisplayAllOrder}>
-            <button className="cancelButton">
+            <button className="cancelButton" data-button-type="cancelButton">
                 [X]
             </button>
             <section className="previousOrderSection">

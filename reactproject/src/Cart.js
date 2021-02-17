@@ -13,13 +13,13 @@ export default function Cart(props) {
 
     const onCart = useCallback((e) => {
         const key=e.target.value;
-        if(e.target.parentElement.className == "tableItemSubtract"){
+        if(e.target.dataset.buttonName == "subQty"){
             dispatch ({type : ACTIONS.SUB_QTY_FROM_CART , key : key})
         }
-        else if(e.target.parentElement.className == "tableItemAdd"){
+        else if(e.target.dataset.buttonName == "addQty"){
             dispatch ({type : ACTIONS.ADD_QTY_TO_CART , key : key})
         }
-        else if(e.target.parentElement.className == "tableItemRemove"){
+        else if(e.target.dataset.buttonName == "removeQty"){
             dispatch ({type : ACTIONS.REMOVE_FROM_CART , key : key})
         }
     },[]);

@@ -24,7 +24,7 @@ function DisplayOrderCard(props){
                     </tbody>
                 </table>
             </section>
-            <button className="done" value={props.id}> {props.buttonDisplayValue} </button>
+            <button className="done" value={props.id} data-button-type={true}> {props.buttonDisplayValue} </button>
         </div>
     );
 };

@@ -25,11 +25,11 @@ const DisplayPreviousOrderRow =  React.memo((props) => {
             </td>
             <td className = "prOrEdit">
                 { props.order.status === "Pending" || props.order.status === "Deliverd" ? 
-                    <button className = { (props.order.status === "Pending" ? "editButton" : "removeButton")} value={props.id}> {
+                    <button className = { (props.order.status === "Pending" ? "editButton" : "removeButton")} value={props.id} data-button-type = { (props.order.status === "Pending" ? "editButton" : "removeButton")}> {
                         props.order.status == "Pending" ? "Edit" : "Remove"} 
                     </button> : ""
                 }
-                { props.order.status !== "Pending" ? <button className="copyToCartButton" value={props.id}> Copy To Cart</button> : ""}
+                { props.order.status !== "Pending" ? <button className="copyToCartButton" value={props.id} data-button-type="copyToCartButton"> Copy To Cart</button> : ""}
             </td>
             <td className="prOrStatus">{props.order.status}</td>
         </tr>

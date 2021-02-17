@@ -8,7 +8,7 @@ const ItemCard = React.memo((props) => {
         <div className="createBox showBox">
             <LazyLoadImage className="images" src={source} alt={props.alt}/> <br />
             <span className="itemName"> {props.itemName} </span>
-            <button className="addButton" value={props.id}> Add To Cart </button>
+            <button className="addButton" value={props.id} data-button-type = {true}> Add To Cart </button>
         </div>
     );
 });

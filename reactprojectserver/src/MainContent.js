@@ -62,7 +62,7 @@ export default function MainContent(props){
     },[state.allOrd]);
 
     const onMoveToProcessing = useCallback( (e) => {
-        if(e.target.tagName == "BUTTON"){
+        if(e.target.dataset.buttonType){
             dispatch({type : ACTIONS.REMOVE_FROM_PENDING ,  key : e.target.value.toString() });
             updateStatus(e.target.value,"Processing");
             dispatch({type : ACTIONS.ADD_TO_PROCESSING ,  key : e.target.value.toString() });
@@ -70,7 +70,7 @@ export default function MainContent(props){
     },[] ) ;
 
     const onMoveToOnWay = useCallback( (e) => {
-        if(e.target.tagName == "BUTTON"){
+        if(e.target.dataset.buttonType){
             dispatch({type : ACTIONS.REMOVE_FROM_PROCESSING,  key : e.target.value.toString() });
             updateStatus(e.target.value,"On Way");
             dispatch({type : ACTIONS.ADD_TO_ON_WAY ,  key : e.target.value.toString() });
@@ -78,7 +78,7 @@ export default function MainContent(props){
     },[]);
 
     const onMoveToDelivered = useCallback( (e) => {
-        if(e.target.tagName == "BUTTON"){
+        if(e.target.dataset.buttonType){
             dispatch({type : ACTIONS.REMOVE_FROM_ON_WAY ,  key : e.target.value.toString() });
             updateStatus(e.target.value,"Deliverd");
             dispatch({type : ACTIONS.ADD_TO_DELIVERED ,  key : e.target.value.toString() });
