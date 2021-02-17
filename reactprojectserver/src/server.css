@@ -1,10 +1,15 @@
+:root{
+    --heading : 10%;
+    --content: 90%;
+}
+
 *{
     box-sizing: border-box;
 }
 #heading{
     min-height: 80px;
     padding-top: 10px;
-    height: 10%;
+    height: var(--heading);
     box-sizing: border-box;
     text-align: center;
 }
@@ -12,29 +17,25 @@
 #headingName{
     display: block;
     min-width: 400px;
-    flex-grow: 1;
     font-size: 50px;
     text-shadow: 3px 3px 5px gray;
     text-align: center;
 }
 
 .search{
-    width: 100%;
     text-align: right;
     padding: 5px;
-    font-size: medium;
-    float: right;
-    font-size: 1.4rem;
+    font-size: 22px;
 }
 
 .findTable{
-    font-size: 1.2rem;
+    font-size: 19px;
     padding: 0px 5px;
 }
 
 .content{
     display: flex;
-    height: 89%;
+    height: var(--content);
     width: 100%;
     box-sizing: border-box;
     overflow: auto;
@@ -69,7 +70,7 @@
 .orderStatusHeader{
     display: inline-block;
     padding: 20px 50px ;
-    font-size: 1.5rem;
+    font-size: 24px;
     color: Blue;
 }
 
@@ -92,7 +93,6 @@
     background-color: white;
 }
 
-
 .list{
     width: 100%;
     height: auto;
@@ -106,12 +106,13 @@
     width: 80%;
     text-align: center;
     padding: 10px 0px;
-    font-size: 1.1rem;
+    font-size: 18px;
 }
 
 .list tr:nth-child(even) td:nth-child(even){
-    color: rgba(234, 0, 255, 0.658);
-    background-color: rgb(245, 245, 245);
+    color: #ea00ff;
+    opacity: 0.6;
+    background-color: whitesmoke;
 }
 
 .list tr:nth-child(odd) td:nth-child(even){
@@ -120,7 +121,8 @@
 }
 
 .List tr:nth-child(odd) td:nth-child(odd){
-    color: rgba(234, 0, 255, 0.658);
+    color: #ea00ff;
+    opacity: 0.6;
     background-color: whitesmoke;
 }
 
@@ -131,7 +133,7 @@
 .itemQty{
     width:20%;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 18px;
 }
 
 .done{
@@ -145,7 +147,7 @@
     align-items: center;
     color: #97CAEF;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 22px;
     cursor: pointer;
     font-family: inherit;
     border: black;
@@ -165,7 +167,7 @@ body{
 }
 
 strong{
-    font-size: 2rem;
+    font-size: 32px;
 }
 
 option{
@@ -183,16 +185,8 @@ button{
 .searchButton{
     color: black;
     border: 2px solid white;
-    font-size: 1.2rem;
+    font-size: 19px;
     border-radius: 3px ;
-}
-
-.addItemButton{
-    border: 2px solid black;
-    color: white;
-    float: left;
-    background-color: green;
-    border-radius: 5px;
 }
 
 #displayPendingId{
@@ -206,3 +200,4 @@ button{
 #displayOnWay{
     align-self: center;
 }
+
