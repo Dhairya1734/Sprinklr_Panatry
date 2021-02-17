@@ -8,9 +8,9 @@ const DisplayCartItems= React.memo((props) => {
     const cart = useSelector(state => state.cart);
 
     const DisplayItems = useCallback((cart) => {
-        let allRowsInCart = [];
+        const allRowsInCart = [];
         let ctr = 1;
-        for(let [key,value] of cart){
+        for(const [key,value] of cart){
             allRowsInCart.push(<DisplayCartRow key={key.toString()+value.toString()+ctr.toString()} itemId={key} id={key.toString()+value.toString()} srNo={ctr} name={props.itemList[key].itemName} qty={value}/>);
             ctr++;
         }

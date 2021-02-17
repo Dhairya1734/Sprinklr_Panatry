@@ -14,7 +14,7 @@ function Processing(props){
         </header>
         {Object.keys(processingOrder).map( key => {
             return ( props.table == "all" || props.allOrd[processingOrder[key]]["no"].toString() == props.table.toString()) ?
-                <DisplayOrderCard key={key} id={processingOrder[key]} allOrd={props.allOrd} onButton={"Deliver"} items= {props.items}/> : "";
+                <DisplayOrderCard key={key} id={processingOrder[key]} allOrd={props.allOrd} buttonDisplayValue={"Deliver"} items= {props.items}/> : "";
         })}
         <section id="displayProcessingId"></section>
         </>

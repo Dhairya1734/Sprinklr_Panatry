@@ -14,7 +14,7 @@ function Pending(props){
         <section id="displayPendingId">
             {Object.keys(pendingOrder).map( key => {
                 return ( props.table == "all" || props.allOrd[pendingOrder[key]]["no"].toString() == props.table.toString()) ?
-                <DisplayOrderCard key={key} id={pendingOrder[key]} allOrd={props.allOrd} onButton={"Move To Processing"} items= {props.items}/> : "";
+                <DisplayOrderCard key={key} id={pendingOrder[key]} allOrd={props.allOrd} buttonDisplayValue={"Move To Processing"} items= {props.items}/> : "";
             })}
         </section>
         </>

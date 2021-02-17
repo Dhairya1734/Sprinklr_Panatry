@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import ItemHeading from './ItemHeading';
+import ItemTypeSection from './ItemTypeSection';
 import {useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { ACTIONS } from "./Reducer";
@@ -34,7 +34,7 @@ const ItemList = React.memo((props) => {
         <section className="boxType" id="leftContent" onClick={addToCartHandler} /* onAnimationEnd={animationEndHandler} */>
             {Object.keys(props.itemHeading).map( key => {
                 return (
-                    <ItemHeading  key = {key} id={key} content = {props.itemHeading[key]} itemList ={props.itemList}/>
+                    <ItemTypeSection  key = {key} id={key} content = {props.itemHeading[key]} itemList ={props.itemList}/>
                 )
             })}
         </section>

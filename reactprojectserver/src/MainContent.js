@@ -32,7 +32,7 @@ export default function MainContent(props){
         .catch(() => console.log("Error"));
     },[]);
 
-    let [state,setState] = useState({
+    const [state,setState] = useState({
         "allOrd" : JSON.parse(localStorage.getItem(LOCALSTORAGE.ALL_ORDER)),
     });
 
@@ -53,15 +53,15 @@ export default function MainContent(props){
         }
     }, [])
 
-    let updateStatus = useCallback((key,value) => {
-        let newAllOrd = {...state.allOrd};
+    const updateStatus = useCallback((key,value) => {
+        const newAllOrd = {...state.allOrd};
         newAllOrd[key]["status"]=value;
         localStorage.setItem(LOCALSTORAGE.ALL_ORDER,JSON.stringify(newAllOrd));
         setState({...state, allOrd : newAllOrd});
         return newAllOrd;
     },[state.allOrd]);
 
-    let moveToProcessingHandler = useCallback( (e) => {
+    const onMoveToProcessing = useCallback( (e) => {
         if(e.target.tagName == "BUTTON"){
             dispatch({type : ACTIONS.REMOVE_FROM_PENDING ,  key : e.target.value.toString() });
             updateStatus(e.target.value,"Processing");
@@ -69,7 +69,7 @@ export default function MainContent(props){
         }
     },[] ) ;
 
-    let moveToOnWayHandler = useCallback( (e) => {
+    const onMoveToOnWay = useCallback( (e) => {
         if(e.target.tagName == "BUTTON"){
             dispatch({type : ACTIONS.REMOVE_FROM_PROCESSING,  key : e.target.value.toString() });
             updateStatus(e.target.value,"On Way");
@@ -77,7 +77,7 @@ export default function MainContent(props){
         }
     },[]);
 
-    let moveToDeliveredHandler = useCallback( (e) => {
+    const onMoveToDelivered = useCallback( (e) => {
         if(e.target.tagName == "BUTTON"){
             dispatch({type : ACTIONS.REMOVE_FROM_ON_WAY ,  key : e.target.value.toString() });
             updateStatus(e.target.value,"Deliverd");
@@ -88,13 +88,13 @@ export default function MainContent(props){
 
     return(
         <section className="content">
-            <div className="orderStatus" id="onWay" onClick={moveToDeliveredHandler}>
+            <div className="orderStatus" id="onWay" onClick={onMoveToDelivered}>
                 <OnWay items={items} allOrd={state.allOrd} table={props.table}/>
             </div>
-            <div className="orderStatus" id="processing" onClick={moveToOnWayHandler}>
+            <div className="orderStatus" id="processing" onClick={onMoveToOnWay}>
                 <Processing items={items} allOrd={state.allOrd} table={props.table} />
             </div>
-            <div className="orderStatus" id="pending" onClick={moveToProcessingHandler}>
+            <div className="orderStatus" id="pending" onClick={onMoveToProcessing}>
                 <Pending items={items} allOrd={state.allOrd} table={props.table}/>
             </div>
         </section>

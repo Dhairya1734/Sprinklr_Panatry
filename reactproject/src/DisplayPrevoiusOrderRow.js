@@ -1,5 +1,5 @@
 import React from 'react';
-import PreviousOrderSubRow from './PreviousOrderSubRow'
+// import PreviousOrderSubRow from './PreviousOrderSubRow'
 import PropTypes from 'prop-types'
 
 const DisplayPreviousOrderRow =  React.memo((props) => {
@@ -12,7 +12,13 @@ const DisplayPreviousOrderRow =  React.memo((props) => {
                 <table className="subTable">
                     <tbody>
                     {Object.keys(props.order).map( (key) => {
-                        return (key !== "id" && key!=="date" && key!="status" && key!="no") ? <PreviousOrderSubRow key={key} name={props.itemList[key]["itemName"]} qty={props.order[key]} type = "CLIENT_TYPE"/> : null;
+                        return (key !== "id" && key!=="date" && key!="status" && key!="no") ? 
+                            //  <PreviousOrderSubRow key={key} name={props.itemList[key]["itemName"]} qty={props.order[key]} type = "CLIENT_TYPE"/> 
+                            ( <tr key={key} className="previousOrderItemRow">
+                                <td className = "previousOrderItemTableItemName" > {props.itemList[key]["itemName"]} </td>
+                                <td > {props.order[key]} </td>
+                            </tr>)
+                        : null;
                     })}
                     </tbody>
                 </table>

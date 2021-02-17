@@ -10,19 +10,18 @@ function AddOrderToPrevious(props) {
 
     let allOrd=JSON.parse(localStorage.getItem(LOCALSTORAGE.ALL_ORDER));
     
-    let allOrdId;
 
-    let tempObj={};
+    const tempObj={};
     tempObj.date=new Date();
     let idNum=Number(localStorage.getItem(LOCALSTORAGE.ORDER_ID));
     tempObj.no= idNum%10 === 9 ? "10" : "0"+String((idNum%10)+1); 
-    allOrdId="u"+tempObj.no+idNum.toString();
+    const allOrdId="u"+tempObj.no+idNum.toString();
     idNum++;
     localStorage.setItem(LOCALSTORAGE.ORDER_ID, idNum.toString());
     tempObj.status="Pending";
 
     // Order List
-    for(let key of props.cart.keys()){
+    for(const key of props.cart.keys()){
         console.log(key);
         tempObj[key]=props.cart.get(key);
     }

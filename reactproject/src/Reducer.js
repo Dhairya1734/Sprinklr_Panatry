@@ -9,7 +9,7 @@ export const ACTIONS = {
 }
 
 function addQty(key,state){
-   let newCart = new Map(state);
+   const newCart = new Map(state);
 
     if(newCart.get(key) === undefined)
         newCart.set(key,1);
@@ -20,13 +20,13 @@ function addQty(key,state){
 }
 
 function removeItemFromCart(key,cart){
-    let newCart = new Map(cart);
+    const newCart = new Map(cart);
     newCart.delete(key);
     return newCart;
 }
 
 function subtractQty(key,cart){
-    let newCart = new Map(cart);
+    const newCart = new Map(cart);
     if(newCart.get(key) === 1)
         return removeItemFromCart(key,newCart);
     else{
@@ -40,8 +40,8 @@ function resetCart(){
 }
 
 function copyToCart(tempObj){
-    let newCart = new Map();
-    for(let key in tempObj){
+    const newCart = new Map();
+    for(const key in tempObj){
         if(key !== "id" && key!=="date" && key!="status" && key!="no"){
             newCart.set(key,tempObj[key]);
         }

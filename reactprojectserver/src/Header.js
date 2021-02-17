@@ -16,7 +16,7 @@ function Header(props){
             <span id="headingName">Sprinklr Pantry</span>
             <section className="search">
                 <label> Table Number: 
-                    <select className="findTable" onChange ={props.handler} name="findTable" > 
+                    <select className="findTable" onChange ={props.onSetTable} name="findTable" ref = {props.searchRef}> 
                         <option key="all" value="all"> All</option>
                         {returnList(10)}
                     </select>
@@ -30,7 +30,8 @@ function Header(props){
 };
 
 Header.propTypes = {
-    handler : PropTypes.func.isRequired,
+    onSetTable : PropTypes.func.isRequired,
+    searchRef : PropTypes.object,
 }
 
 export default React.memo(Header);

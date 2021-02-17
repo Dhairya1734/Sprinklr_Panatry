@@ -14,7 +14,7 @@ function OnWay(props){
         </header>
         {Object.keys(onWayOrder).map( key => {
             return ( props.table == "all" || props.allOrd[onWayOrder[key]]["no"].toString() == props.table.toString()) ?
-            <DisplayOrderCard key={onWayOrder[key]} id={onWayOrder[key]} allOrd={props.allOrd} onButton={"Delivery Successful"} items= {props.items}/> : "";
+            <DisplayOrderCard key={onWayOrder[key]} id={onWayOrder[key]} allOrd={props.allOrd} buttonDisplayValue={"Delivery Successful"} items= {props.items}/> : "";
         })}
         <section id="displayOnWay"></section>
         </>

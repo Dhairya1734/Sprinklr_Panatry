@@ -11,8 +11,8 @@ export default function Cart(props) {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
 
-    let cartHandlers = useCallback((e) => {
-        let key=e.target.value;
+    const onCart = useCallback((e) => {
+        const key=e.target.value;
         if(e.target.parentElement.className == "tableItemSubtract"){
             dispatch ({type : ACTIONS.SUB_QTY_FROM_CART , key : key})
         }
@@ -24,7 +24,7 @@ export default function Cart(props) {
         }
     },[]);
 
-    let addOredrToPrevious = useCallback((e) => {
+    const onSubmit = useCallback((e) => {
         AddOrderToPrevious({cart : cart});
         dispatch ({type : ACTIONS.RESET_CART});
     },[cart]);
@@ -35,11 +35,11 @@ export default function Cart(props) {
                 <strong>Your Items</strong>
             </header>
             {console.log("This is updated")}
-            <section id="selectedTable" onClick={cartHandlers}>
+            <section id="selectedTable" onClick={onCart}>
                 <DisplayCartItems itemList = {props.itemList}/>
             </section>
             <section id="submitButtonSection">
-                <button id="submitButton" onClick={addOredrToPrevious}> Place Order</button>
+                <button id="submitButton" onClick={onSubmit}> Place Order</button>
             </section>
         </section>
     );

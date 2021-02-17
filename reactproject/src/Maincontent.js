@@ -7,7 +7,7 @@ import rootReducer from './Reducer';
 import { Provider,connect } from 'react-redux';
 import { LOCALSTORAGE } from "./localStorage";
 
-let store = createStore(rootReducer);
+const store = createStore(rootReducer);
 
 const Navigation= lazy(() => import('./Navigation'));
 const Cart= lazy(() => import('./Cart'));

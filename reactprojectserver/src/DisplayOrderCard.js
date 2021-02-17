@@ -1,5 +1,5 @@
 import React from 'react';
-import TableRow from './TableRow';
+//import TableRow from './TableRow';
 import PropTypes from 'prop-types';
 
 function DisplayOrderCard(props){
@@ -13,12 +13,18 @@ function DisplayOrderCard(props){
                 <table className = "list">
                     <tbody>
                         {Object.keys(props.allOrd[props.id]).map( name => {
-                            return (name !== "no" && name!="date" && name!="status" && name!="id") ? <TableRow key={name} name={ props.items ?  props.items[name]["itemName"] : ""} qty={props.allOrd[props.id][name]} type="SERVER_TYPE"/> : null
+                            return (name !== "no" && name!="date" && name!="status" && name!="id") ? (
+                            //<TableRow key={name} name={ props.items ?  props.items[name]["itemName"] : ""} qty={props.allOrd[props.id][name]} type="SERVER_TYPE"/> 
+                            <tr key={name}>
+                                <td className="itemName">{props.items ?  props.items[name]["itemName"] : ""}</td>
+                                <td className="itemQty">{props.allOrd[props.id][name]}</td>
+                            </tr>
+                            ): null
                         })}
                     </tbody>
                 </table>
             </section>
-            <button className="done" value={props.id}> {props.onButton} </button>
+            <button className="done" value={props.id}> {props.buttonDisplayValue} </button>
         </div>
     );
 };
@@ -26,7 +32,7 @@ function DisplayOrderCard(props){
 DisplayOrderCard.propTypes = {
     id: PropTypes.string,
     allOrd: PropTypes.object,
-    onButton: PropTypes.string.isRequired,
+    buttonDisplayValue: PropTypes.string.isRequired,
     items: PropTypes.objectOf(
         PropTypes.objectOf(
             PropTypes.string,
