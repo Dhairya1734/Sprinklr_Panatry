@@ -1,10 +1,15 @@
+:root{
+    --Heading : 10%;
+    --content : 88%;
+}
+
 *{
     box-sizing: border-box;
 }
 #Heading{
     min-height: 80px;
     padding-top: 10px;
-    height: 10%;
+    height: var(--Heading);
     box-sizing: border-box;
     text-align: center;
 }
@@ -12,29 +17,25 @@
 #Heading_name{
     display: block;
     min-width: 400px;
-    flex-grow: 1;
     font-size: 50px;
     text-shadow: 3px 3px 5px gray;
     text-align: center;
 }
 
 .Search{
-    width: 100%;
     text-align: right;
     padding: 5px;
-    font-size: medium;
-    float: right;
-    font-size: 1.4rem;
+    font-size: 22px;
 }
 
 .Find_Table{
-    font-size: 1.2rem;
+    font-size: 19px;
     padding: 0px 5px;
 }
 
 .Content{
     display: flex;
-    height: 89%;
+    height: var( --content );
     width: 100%;
     box-sizing: border-box;
     overflow: auto;
@@ -69,7 +70,7 @@
 .Order_Status_Header{
     display: inline-block;
     padding: 20px 50px ;
-    font-size: 1.5rem;
+    font-size: 24px;
     color: Blue;
 }
 
@@ -106,7 +107,7 @@
     width: 80%;
     text-align: center;
     padding: 10px 0px;
-    font-size: 1.1rem;
+    font-size: 18px;
 }
 
 .List tr:nth-child(even) td:nth-child(even){
@@ -131,7 +132,7 @@
 .ItemQty{
     width:20%;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 18px;
 }
 
 .done{
@@ -145,7 +146,7 @@
     align-items: center;
     color: #97CAEF;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 22px;
     cursor: pointer;
     font-family: inherit;
     border: black;
@@ -165,7 +166,7 @@ body{
 }
 
 strong{
-    font-size: 2rem;
+    font-size: 32px;
 }
 
 option{
@@ -183,16 +184,8 @@ button{
 .Search_Button{
     color: black;
     border: 2px solid white;
-    font-size: 1.2rem;
+    font-size: 19px;
     border-radius: 3px ;
-}
-
-.addItemButton{
-    border: 2px solid black;
-    color: white;
-    float: left;
-    background-color: green;
-    border-radius: 5px;
 }
 
 #displayPendingId{
