@@ -1,5 +1,15 @@
 import { combineReducers } from "redux";
 
+export const ACTIONS = {
+    COPY_TO_PENDING : 'COPY_TO_PENDING',
+    REMOVE_FROM_PENDING : 'REMOVE_FROM_PENDING',
+    ADD_TO_PROCESSING : 'ADD_TO_PROCESSING',
+    REMOVE_FROM_PROCESSING : 'REMOVE_FROM_PROCESSING',
+    ADD_TO_ON_WAY : 'ADD_TO_ON_WAY',   
+    REMOVE_FROM_ON_WAY : 'REMOVE_FROM_ON_WAY',
+    ADD_TO_DELIVERED : 'ADD_TO_DELIVERED'
+}
+
 function pushToArray (key , array) {
     //console.log(key);
     let newArray = array.slice();
@@ -22,9 +32,9 @@ function copyFromArray(array) {
 function pendingHandler(state = JSON.parse(localStorage.getItem("Pending_Order")), action){
 
     switch(action.type){
-        case 'COPY_TO_PENDING':
+        case ACTIONS.COPY_TO_PENDING:
             return copyFromArray(JSON.parse(localStorage.getItem("Pending_Order")));
-        case 'REMOVE_FROM_PENDING':
+        case ACTIONS.REMOVE_FROM_PENDING:
             return removeFromArray(action.key,state);
         default:
             return state;
@@ -34,9 +44,9 @@ function pendingHandler(state = JSON.parse(localStorage.getItem("Pending_Order")
 function processingHandler(state = JSON.parse(localStorage.getItem("Processing_Order")), action){
 
     switch(action.type){
-        case 'ADD_TO_PROCESSING':
+        case ACTIONS.ADD_TO_PROCESSING:
             return pushToArray(action.key,state);
-        case 'REMOVE_FROM_PROCESSING':
+        case ACTIONS.REMOVE_FROM_PROCESSING:
             return removeFromArray(action.key,state);
         default:
             return state;
@@ -46,9 +56,9 @@ function processingHandler(state = JSON.parse(localStorage.getItem("Processing_O
 function onWayHandler(state = JSON.parse(localStorage.getItem("On_Way_Order")), action){
 
     switch(action.type){
-        case 'ADD_TO_ON_WAY':
+        case ACTIONS.ADD_TO_ON_WAY:
             return pushToArray(action.key,state);
-        case 'REMOVE_FROM_ON_WAY':
+        case ACTIONS.REMOVE_FROM_ON_WAY:
             return removeFromArray(action.key,state);
         default:
             return state;
@@ -58,7 +68,7 @@ function onWayHandler(state = JSON.parse(localStorage.getItem("On_Way_Order")), 
 function deliveredHandler(state = JSON.parse(localStorage.getItem("Delivered_order")), action){
 
     switch(action.type){
-        case 'ADD_TO_DELIVERED':
+        case ACTIONS.ADD_TO_DELIVERED:
             return pushToArray(action.key,state);
         default:
             return state;
