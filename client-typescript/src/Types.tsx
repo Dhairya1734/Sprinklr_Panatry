@@ -17,9 +17,11 @@ export type ItemList = null | {
 export type OneOrder = {
     date : Date,
     no : string,
-    status : string, 
+    status : ("Pending" | "Processing" | "On Way" | "Delivered"), 
 } & { [ key:string ] : string }
 
 export type AllOrder = {
     [key : string] : OneOrder
 }
+
+export type Cart = Map< string , number>

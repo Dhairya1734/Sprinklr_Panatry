@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import {Cart, OneOrder} from './Types';
 
 export const ACTIONS = {
     ADD_QTY_TO_CART : 'ADD_QTY_TO_CART',
@@ -8,8 +9,8 @@ export const ACTIONS = {
     RESET_CART : 'RESET_CART'
 }
 
-function addQty(key : any ,cart : any ){
-   const newCart = new Map<string , number>(cart);
+function addQty(key : string ,cart : Cart ) : Cart{
+   const newCart : Cart = new Map<string , number>(cart);
 
     if(newCart.get(key) === undefined)
         newCart.set(key,1);
@@ -19,38 +20,38 @@ function addQty(key : any ,cart : any ){
     return newCart;
 }
 
-function removeItemFromCart(key : any ,cart : any){
-    const newCart = new Map(cart);
+function removeItemFromCart(key : string ,cart : Cart) : Cart{
+    const newCart : Cart = new Map(cart);
     newCart.delete(key);
     return newCart;
 }
 
-function subtractQty(key : any ,cart : any){
-    const newCart = new Map<string , number>(cart);
+function subtractQty(key : string ,cart : Cart) : Cart{
+    const newCart : Cart = new Map<string , number>(cart);
     if(newCart.get(key) === 1)
         return removeItemFromCart(key,newCart);
     else{
-        newCart.set(key,cart.get(key)-1);
+        newCart.set(key,cart.get(key)!-1);
         return newCart;
     }
 }
 
-function resetCart(){
-    return new Map();
+function resetCart() : Cart{
+    return new Map<string,number>();
 }
 
-function copyToCart(tempObj : any){
-    const newCart = new Map();
+function copyToCart(tempObj : OneOrder) : Cart{
+    const newCart : Cart = new Map<string , number>();
     for(const key in tempObj){
         if(key !== "id" && key!=="date" && key!="status" && key!="no"){
-            newCart.set(key,tempObj[key]);
+            newCart.set(key,Number(tempObj[key]));
         }
     }
     return newCart;
 }
 
 
-function cartAction(state = new Map() , action : {key : string, type: string, obj : any, cart : any}) {
+function cartAction(state = new Map() , action : {key : string, type: string, obj : any, cart : Cart}) {
 
     switch (action.type){
         case ACTIONS.ADD_QTY_TO_CART:

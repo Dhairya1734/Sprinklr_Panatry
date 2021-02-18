@@ -1,17 +1,17 @@
-import React, { useEffect, useState,/* lazy, */ Suspense } from 'react';
+import React, { useEffect, useState,lazy, Suspense } from 'react';
 import Navigation from './Navigation'
-// import Cart from './Cart'
-// import ItemList from './ItemList'
+// import DisplayCart from './Cart'
+import ItemListSection from './ItemListSection'
 import { createStore } from 'redux';
 import rootReducer from './Reducer';
 import { Provider,connect } from 'react-redux';
 import { LOCALSTORAGE } from "./localStorage";
-import {ItemHeading, ItemList} from './Types'
+import {ItemHeading, ItemList } from './Types'
 
 const store = createStore(rootReducer);
 
 // const Navigation= lazy(() => import('./Navigation'));
-// const Cart= lazy(() => import('./Cart'));
+const DisplayCart= lazy(() => import('./DisplayCart'));
 
 const Maincontent : React.FunctionComponent =()=> {
     const itemHeading :ItemHeading  = JSON.parse(localStorage.getItem(LOCALSTORAGE.HEADING)!);
@@ -29,10 +29,10 @@ const Maincontent : React.FunctionComponent =()=> {
                 <Suspense fallback = {<div className="loading"> Navigation is Loading </div>}>
                     <Navigation itemHeading={itemHeading} itemList ={items !== null ? items : null} />
                 </Suspense>
-                {/* <ItemList itemList={items} itemHeading={itemHeading} />
-                <Suspense fallback = {<div className="loading"> Cart is Loading </div>}>
-                    <Cart itemList={items} />
-                </Suspense> */}
+                <ItemListSection itemList={items} itemHeading={itemHeading} />
+                {<Suspense fallback = {<div className="loading"> Cart is Loading </div>}>
+                    <DisplayCart itemList={items} />
+                </Suspense>}
             </section>
         </Provider>
     );
