@@ -1,20 +1,20 @@
 import './server.css';
 import Header from './Header'
 //import MainContent from './MainContent'
-import React , {useState ,useRef, /* lazy , */ Suspense, useCallback} from 'react';
+import React , {useState ,useRef, lazy , Suspense, useCallback} from 'react';
 import {connect, Provider } from 'react-redux'
 import rootReducer from './Reducer'
 import {createStore} from 'redux'
 
-// const MainContent = lazy( ()=> import('./MainContent') )
+const MainContent = lazy( ()=> import('./MainContent') )
 
 const store = createStore(rootReducer);
 
 function App() {
 
-  const searchRef = useRef<HTMLSelectElement | undefined>();
+  const searchRef = useRef<HTMLSelectElement | null>();
 
-  const [/* displayTable */,setDisplayTable] = useState("all");
+  const [displayTable,setDisplayTable] = useState<string>("all");
 
   const onSetTable = useCallback((e : React.ChangeEvent<HTMLSelectElement>) : void=>{
     if(searchRef.current){
@@ -27,7 +27,7 @@ function App() {
         <Provider store={store}>
             <Header onSetTable = {(onSetTable)} searchRef={searchRef}/>
             <Suspense fallback="This is loading">
-              {/* <MainContent table={displayTable}/> */}
+              <MainContent table={displayTable}/>
             </Suspense>
         </Provider>
     </>

@@ -1,7 +1,8 @@
 export type State = {
     pendingOrder : string[],
     processingOrder : string[],
-    onWayOrder : string[]
+    onWayOrder : string[],
+    deliveredOrder : string[]
 }
 
 export type ItemList = null | {

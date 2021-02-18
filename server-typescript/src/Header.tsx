@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 type Props = {
     onSetTable : (e: React.ChangeEvent<HTMLSelectElement>) => void,
-    searchRef : any
+    searchRef : any;
 }
 
 function returnList(num : number){
