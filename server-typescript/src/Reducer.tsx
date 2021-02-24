@@ -19,7 +19,7 @@ export const ACTIONS : Actions = {
     ADD_TO_ON_WAY : 'ADD_TO_ON_WAY',   
     REMOVE_FROM_ON_WAY : 'REMOVE_FROM_ON_WAY',
     ADD_TO_DELIVERED : 'ADD_TO_DELIVERED'
-}
+} as const
 
 function pushToArray (key : string , array : string[]) : string[] {
     //console.log(key);
@@ -28,19 +28,19 @@ function pushToArray (key : string , array : string[]) : string[] {
     return newArray;
 }
 
-function removeFromArray(key : string, array : string[]){
+function removeFromArray(key : string, array : string[]) : string[] {
     //console.log(key);
     let newArray : string[] = array.slice();
     newArray.splice(newArray.indexOf(key),1);
     return newArray;
 }
 
-function copyFromArray(array : string[]) {
+function copyFromArray(array : string[]) : string[] {
     let newArray : string[] = array.slice();
     return newArray;
 }
 
-function onPending(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.PENDING_ORDER)!), action : {type : string , key : string}){
+function onPending(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.PENDING_ORDER)!), action : {type : string , key : string}) : string[] {
 
     switch(action.type){
         case ACTIONS.COPY_TO_PENDING:
@@ -52,7 +52,7 @@ function onPending(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.PENDING_
     }
 }
 
-function onProcessing(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.PROCESSING_ORDER)!), action : {type : string , key : string}){
+function onProcessing(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.PROCESSING_ORDER)!), action : {type : string , key : string}) : string[] {
 
     switch(action.type){
         case ACTIONS.ADD_TO_PROCESSING:
@@ -64,7 +64,7 @@ function onProcessing(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.PROCE
     }
 }
 
-function onOnWay(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.ON_WAY_ORDER)!), action : {type : string , key : string}){
+function onOnWay(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.ON_WAY_ORDER)!), action : {type : string , key : string}) : string[] {
 
     switch(action.type){
         case ACTIONS.ADD_TO_ON_WAY:
@@ -76,7 +76,7 @@ function onOnWay(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.ON_WAY_ORD
     }
 }
 
-function deliveredHandler(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.DELIVERED_ORDER)!), action : {type : string , key : string}){
+function deliveredHandler(state = JSON.parse(localStorage.getItem(LOCALSTORAGE.DELIVERED_ORDER)!), action : {type : string , key : string}) : string[] {
 
     switch(action.type){
         case ACTIONS.ADD_TO_DELIVERED:

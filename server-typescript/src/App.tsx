@@ -1,6 +1,5 @@
 import './server.css';
 import Header from './Header'
-//import MainContent from './MainContent'
 import React , {useState ,useRef, lazy , Suspense, useCallback} from 'react';
 import {connect, Provider } from 'react-redux'
 import rootReducer from './Reducer'
@@ -10,13 +9,15 @@ const MainContent = lazy( ()=> import('./MainContent') )
 
 const store = createStore(rootReducer);
 
-function App() {
+const App : React.FC = () => {
 
-  const searchRef = useRef<HTMLSelectElement | null>();
+
+  // define 
+  const searchRef = useRef<HTMLSelectElement>();
 
   const [displayTable,setDisplayTable] = useState<string>("all");
 
-  const onSetTable = useCallback((e : React.ChangeEvent<HTMLSelectElement>) : void=>{
+  const onSetTable = useCallback(() : void=>{
     if(searchRef.current){
       setDisplayTable(searchRef.current.value);
       console.log(searchRef.current.value);
@@ -25,7 +26,7 @@ function App() {
   return (
     <>
         <Provider store={store}>
-            <Header onSetTable = {(onSetTable)} searchRef={searchRef}/>
+            <Header onSetTable = {(onSetTable)} searchRef={(searchRef as any) as React.RefObject<HTMLSelectElement>}/>
             <Suspense fallback="This is loading">
               <MainContent table={displayTable}/>
             </Suspense>

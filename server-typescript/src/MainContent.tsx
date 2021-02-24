@@ -12,7 +12,7 @@ function saveToLocalStorage(key : string,array : string []) {
     localStorage.setItem(key,JSON.stringify(array));
 }
 
-export default function MainContent(props : { table : string }){
+export default function MainContent(props : { table : string }) : JSX.Element {
 
     const [items, setItems] = useState<ItemList>(null);
     const dispatch = useDispatch();

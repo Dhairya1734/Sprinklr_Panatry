@@ -10,7 +10,7 @@ type Props = {
     items : ItemList
 }
 
-function DisplayOrderCard(props : Props){
+function DisplayOrderCard(props : Props) : JSX.Element{
     console.log("Card");
     return(
         <div className = "order" dataset-table = {props.allOrd[props.id]["no"]} >

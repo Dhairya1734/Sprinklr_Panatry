@@ -20,4 +20,4 @@ export const LOCALSTORAGE : Localstorage = {
     ON_WAY_ORDER : "On_Way_Order",
     ITEMS : "items",
     HEADING : "heading",
-}
+} as const

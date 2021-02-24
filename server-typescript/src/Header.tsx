@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 type Props = {
     onSetTable : (e: React.ChangeEvent<HTMLSelectElement>) => void,
-    searchRef : any;
+    searchRef : React.RefObject<HTMLSelectElement>;
 }
 
-function returnList(num : number){
+function returnList(num : number) : JSX.Element[] {
     let allList : JSX.Element[]=[];
     for(let i=1;i<=num;i++){
         allList.push(<option key={i} value={i<10 ? "0" + i.toString() : i.toString()}>{i}</option>);
@@ -14,7 +14,7 @@ function returnList(num : number){
     return allList;
 }
 
-function Header(props : Props){
+const Header = (props : Props) : JSX.Element => {
 
     return (
         <header id="heading">
