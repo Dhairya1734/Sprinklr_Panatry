@@ -7,7 +7,7 @@ export const ACTIONS = {
     REMOVE_FROM_CART : 'REMOVE_FROM_CART',
     COPY_TO_CART : 'COPY_TO_CART',
     RESET_CART : 'RESET_CART'
-}
+} as const
 
 function addQty(key : string ,cart : Cart ) : Cart{
    const newCart : Cart = new Map<string , number>(cart);
@@ -51,7 +51,7 @@ function copyToCart(tempObj : OneOrder) : Cart{
 }
 
 
-function cartAction(state = new Map() , action : {key : string, type: string, obj : any, cart : Cart}) {
+function cartAction(state = new Map() , action : {key : string, type: string, obj : OneOrder, cart : Cart}) {
 
     switch (action.type){
         case ACTIONS.ADD_QTY_TO_CART:

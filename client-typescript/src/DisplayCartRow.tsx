@@ -9,7 +9,7 @@ type Props = {
     qty : number
 }
 
-const DisplayCartRow = (props : Props) => {
+const DisplayCartRow = (props : Props)  : JSX.Element=> {
     return (  
         <tr key={props.id}>
             <td className = "tableSrNo">{props.srNo}</td>

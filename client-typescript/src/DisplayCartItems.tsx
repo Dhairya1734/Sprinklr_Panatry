@@ -4,7 +4,7 @@ import {useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import {ItemList , Cart} from './Types'
  
-const DisplayCartItems= (props : { itemList : ItemList}) => {
+const DisplayCartItems = (props : { itemList : ItemList}) : JSX.Element => {
 
     const cart = useSelector((state : {cart : Cart}) => state.cart);
 

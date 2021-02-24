@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { Dispatch, useCallback } from 'react';
 import ItemTypeSection from './ItemTypeSection';
 import {useDispatch, /* useSelector */ } from 'react-redux'
 import PropTypes from 'prop-types'
 import { ACTIONS } from "./Reducer";
-import {ItemHeading, ItemList} from './Types'
+import {Actions, ItemHeading, ItemList} from './Types'
 
 type Props = {
     itemHeading : ItemHeading,
@@ -14,7 +14,7 @@ type Props = {
 
 const ItemListSection = (props : Props) : JSX.Element => {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch< Dispatch <Actions> >();
     // const cart = useSelector(state => state.cart);
 
     console.log("ItemList");

@@ -1,11 +1,11 @@
-import React,{useCallback, useState} from 'react';
+import React,{Dispatch, useCallback, useState} from 'react';
 import DisplayPreviousOrderRow from './DisplayPrevoiusOrderRow'
 import {useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import {LOCALSTORAGE} from './localStorage'
 import { ACTIONS } from "./Reducer";
-import {ItemList, AllOrder, OneOrder} from './Types';
+import {ItemList, AllOrder, OneOrder, Actions} from './Types';
 
 const removeFromPending= (tempId : string) => {
     const penOrd : string[]=JSON.parse(localStorage.getItem(LOCALSTORAGE.PENDING_ORDER)!);
@@ -19,9 +19,9 @@ type Props = {
     onDisplayPreviousList : VoidFunction
 }
 
-export default function DisplayPreviousOrder(props : Props) {
+export default function DisplayPreviousOrder(props : Props) : JSX.Element {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch< Dispatch <Actions> >();
 
     const [state,setState] = useState<{ "allOrd" : AllOrder }>(
         {"allOrd" : JSON.parse(localStorage.getItem(LOCALSTORAGE.ALL_ORDER)! , function(key, value) {
@@ -46,11 +46,11 @@ export default function DisplayPreviousOrder(props : Props) {
 
             console.log(e.target.value);
     
-            const tempId=e.target.value;
+            const tempId : string=e.target.value;
     
             removeFromPending(tempId);
     
-            const deletedObj = removeOredrfromPrevious(e);
+            const deletedObj : OneOrder = removeOredrfromPrevious(e);
 
             dispatch ({type : ACTIONS.COPY_TO_CART , obj : deletedObj})
 

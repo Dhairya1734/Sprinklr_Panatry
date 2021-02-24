@@ -4,11 +4,11 @@ import AddOrderToPrevious from './AddOrderToPrevious'
 import {useDispatch , useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { ACTIONS } from "./Reducer";
-import {ItemList , Cart} from './Types'
+import {ItemList , Cart , Actions , Dispatch} from './Types'
 
-export default function DisplayCart(props : { itemList : ItemList}) {
+export default function DisplayCart(props : { itemList : ItemList}) : JSX.Element {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch< Dispatch < Actions > >();
     const cart : Cart = useSelector((state : { cart : Cart }) : Cart=> state.cart);
 
     const onCart = useCallback((e) : void => {
@@ -24,7 +24,7 @@ export default function DisplayCart(props : { itemList : ItemList}) {
         }
     },[]);
 
-    const onSubmit = useCallback((e) : void=> {
+    const onSubmit = useCallback(() : void=> {
         AddOrderToPrevious({cart : cart});
         dispatch ({type : ACTIONS.RESET_CART});
     },[cart]);

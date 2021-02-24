@@ -9,7 +9,7 @@ type Props = {
     itemList : ItemList
 }
 
-const Navigation = (props : Props) => {
+const Navigation = (props : Props) : JSX.Element=> {
 
     const [visibleBlock , setVisibleBlock] = useState<string | null>(null);
 

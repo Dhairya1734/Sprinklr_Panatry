@@ -3,7 +3,7 @@ import Header from './Header';
 import React , {lazy, Suspense} from 'react';
 const Maincontenet= lazy(() => import('./Maincontent'));
 
-const App : React.FunctionComponent = () => {
+const App : React.FC = () => {
   return (
     <div className="App">
       <Header />

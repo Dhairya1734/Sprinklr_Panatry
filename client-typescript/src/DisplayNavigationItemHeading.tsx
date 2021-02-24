@@ -5,7 +5,7 @@ type Props = {
     name: string
 }
 
-function DisplayNavigationItemHeading(props : Props) {
+function DisplayNavigationItemHeading(props : Props) : JSX.Element {
     return (
         <>
         <br />

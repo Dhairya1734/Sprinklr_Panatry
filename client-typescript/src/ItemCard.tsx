@@ -9,7 +9,7 @@ type Props = {
     itemName? : string
 }
 
-const ItemCard = (props : Props) => {
+const ItemCard = (props : Props) : JSX.Element => {
     const source = "./img/" + props.src;
     return ( 
         <div className="createBox showBox">

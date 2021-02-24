@@ -9,7 +9,7 @@ type Props = {
     itemList : ItemList,
 }
 
-const DisplayPreviousOrderRow =  React.memo((props : Props) => {
+const DisplayPreviousOrderRow : React.MemoExoticComponent<(props: Props) => JSX.Element> =  React.memo((props : Props) => {
 
     return (
         <tr>
@@ -31,7 +31,7 @@ const DisplayPreviousOrderRow =  React.memo((props : Props) => {
                 </table>
             </td>
             <td className = "prOrEdit">
-                { props.order.status === "Pending" || props.order.status === "Deliverd" ? 
+                { props.order.status === "Pending" || props.order.status === "Delivered" ? 
                     <button className = { (props.order.status === "Pending" ? "editButton" : "removeButton")} value={props.id} data-button-type = { (props.order.status === "Pending" ? "editButton" : "removeButton")}> {
                         props.order.status == "Pending" ? "Edit" : "Remove"} 
                     </button> : ""
