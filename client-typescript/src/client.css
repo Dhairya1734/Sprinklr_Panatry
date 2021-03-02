@@ -24,6 +24,17 @@
     width: 250px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
+    animation-name: orderCard;
+    animation-duration: 2s;
+}
+
+@keyframes orderCard{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .showBox:hover{
@@ -39,7 +50,22 @@
 }
 
 .navItemName{
-    display: block;
+    position: absolute;
+    animation-name: fadeBox;
+    animation-duration: 2s;
+    z-index: 1;
+    background-color: black;
+    padding: 0px 20px;
+    width: 100px;
+}
+
+@keyframes fadeBox{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
 
 .addButton{
@@ -215,6 +241,9 @@ h1{
     text-align: center;
     color: yellowgreen;
     padding: 5px;
+    position: sticky;
+    top: 0px;
+    background-color: #ad125b;
 }
 
 body{
@@ -223,18 +252,22 @@ body{
 
 li{
     list-style-type: none;
+    white-space: nowrap;
 }
 
 strong{
     font-size: 1.75rem;
 }
 
+.naviItemHead{
+    text-align: center;
+}
+
 .naviItemHead:hover{
     background-color: white;
     color: #4DA8DA;
-    padding: 10px 30px;
+    padding: 10px 20px;
     border-radius: 20px;
-    padding-left: 20px;
 }
 
 .naviItemHead:scope{
@@ -255,13 +288,22 @@ button{
     font-family: inherit;
 }
 
+
+
+
 .previousOrderDisplay{
+    animation-name: displayOrderAnimation;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    /* animation-direction: reverse; */
+    animation-timing-function: ease;
     display: flex;
     position: fixed;
     height: 80%;
     width: 80%;
     left: 10%;
     top : 10%;
+    opacity: 0;
     background-color: white;
     z-index: 1;
     overflow: auto;
@@ -269,6 +311,15 @@ button{
     align-items: center;
     box-sizing: border-box;
     flex-direction: column;
+}
+
+@keyframes displayOrderAnimation{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .cancelButton{

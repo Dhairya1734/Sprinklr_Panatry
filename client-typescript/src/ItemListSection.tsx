@@ -38,11 +38,11 @@ const ItemListSection = (props : Props) : JSX.Element => {
 
     return(
         <section className="boxType" id="leftContent" onClick={onAddToCart} /* onAnimationEnd={animationEndHandler} */>
-            {Object.keys(props.itemHeading).map( key => {
+            {props.itemHeading ? Object.keys(props.itemHeading).map( key => {
                 return (
                     <ItemTypeSection  key = {key} id={key} content = {props.itemHeading[key]} itemList ={props.itemList}/>
                 )
-            })}
+            }): <></>}
         </section>
     );
 };

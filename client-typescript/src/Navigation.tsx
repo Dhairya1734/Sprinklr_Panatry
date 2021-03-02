@@ -36,11 +36,11 @@ const Navigation = (props : Props) : JSX.Element=> {
             <Suspense fallback = {<div className="loading"> This is Loading </div>}>
                 <ol id="displayItems">
                     <li><button className="white mainNav" onClick={displayItemList}><strong>Items</strong> </button><br />
-                        {visibleBlock === "itemNavigation" ? <ol className="navItemName">
+                        {visibleBlock === "itemNavigation" ? <ol><div className="navItemName">
                             {Object.keys(props.itemHeading).map(key => {
                                 return <DisplayNavigationItemHeading key={key} id={key} name={props.itemHeading[key].visibleName} />
                             })}
-                        </ol> : " "}
+                        </div></ol> : " "}
                     </li>
                     <li>
                         <button className="white mainNav" onClick={displayPreviousList}> <strong>My Order</strong></button><br />
