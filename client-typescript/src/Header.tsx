@@ -1,12 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const Header:React.FunctionComponent =()=>{
-    console.log("Header")
-    return(
-    <header id="heading">
-        Sprinklr Pantry
-    </header>
-    );
+const Header: React.FunctionComponent = () => {
+	// eslint-disable-next-line no-console
+	console.log("Header");
+	return <header id='heading'>Sprinklr Pantry</header>;
 };
 
 export default React.memo(Header);
