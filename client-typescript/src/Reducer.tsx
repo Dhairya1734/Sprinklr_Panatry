@@ -12,9 +12,11 @@ export const ACTIONS = {
 function addQty(key: string, cart: Cart): Cart {
 	const newCart: Cart = new Map<string, number>(cart);
 
-	if (newCart.get(key) === undefined) newCart.set(key, 1);
-	else newCart.set(key, newCart.get(key)! + 1);
-	console.log(newCart);
+	if (newCart.get(key) === undefined) {
+		newCart.set(key, 1);
+	} else {
+		newCart.set(key, newCart.get(key)! + 1);
+	}
 	return newCart;
 }
 
@@ -26,8 +28,9 @@ function removeItemFromCart(key: string, cart: Cart): Cart {
 
 function subtractQty(key: string, cart: Cart): Cart {
 	const newCart: Cart = new Map<string, number>(cart);
-	if (newCart.get(key) === 1) return removeItemFromCart(key, newCart);
-	else {
+	if (newCart.get(key) === 1) {
+		return removeItemFromCart(key, newCart);
+	} else {
 		newCart.set(key, cart.get(key)! - 1);
 		return newCart;
 	}

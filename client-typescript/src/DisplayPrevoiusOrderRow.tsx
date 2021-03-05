@@ -42,25 +42,25 @@ const DisplayPreviousOrderRow = (props: Props) => {
 			<td className='prOrEdit'>
 				{props.order.status === "Pending" ||
 				props.order.status === "Delivered" ? (
-					<button
-						className={
-							props.order.status === "Pending"
-								? "editButton"
-								: "removeButton"
-						}
-						value={props.id}
-						data-button-type={
-							props.order.status === "Pending"
-								? "editButton"
-								: "removeButton"
-						}
-					>
-						{" "}
-						{props.order.status == "Pending" ? "Edit" : "Remove"}
-					</button>
-				) : (
-					""
-				)}
+						<button
+							className={
+								props.order.status === "Pending"
+									? "editButton"
+									: "removeButton"
+							}
+							value={props.id}
+							data-button-type={
+								props.order.status === "Pending"
+									? "editButton"
+									: "removeButton"
+							}
+						>
+							{" "}
+							{props.order.status == "Pending" ? "Edit" : "Remove"}
+						</button>
+					) : (
+						""
+					)}
 				{props.order.status !== "Pending" ? (
 					<button
 						className='copyToCartButton'
