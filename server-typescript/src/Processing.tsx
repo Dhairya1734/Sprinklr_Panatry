@@ -17,7 +17,7 @@ function Processing(props: Props): JSX.Element {
 
 	return (
 		<>
-			<header>
+			<header className='sticky'>
 				<span className='orderStatusHeader'>
 					<strong> Processing </strong>
 				</span>

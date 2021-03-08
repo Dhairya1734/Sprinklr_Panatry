@@ -14,7 +14,7 @@ function Pending(props: Props): JSX.Element {
 	const pendingOrder = useSelector((state: State) => state.pendingOrder);
 	return (
 		<>
-			<header>
+			<header className='sticky'>
 				<span className='orderStatusHeader'>
 					<strong>Pending</strong>
 				</span>

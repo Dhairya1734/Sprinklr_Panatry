@@ -15,7 +15,7 @@ function OnWay(props: Props): JSX.Element {
 
 	return (
 		<>
-			<header>
+			<header className='sticky'>
 				<span className='orderStatusHeader'>
 					<strong>On Way</strong>
 				</span>

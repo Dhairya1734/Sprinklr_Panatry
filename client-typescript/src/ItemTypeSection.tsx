@@ -16,7 +16,7 @@ type Props = {
 const ItemTypeSection = (props: Props) => {
 	return (
 		<>
-			<h1 id={props.id}>{props.content.visibleName} </h1>
+			<h1 id={props.id} className="itemListHeading">{props.content.visibleName} </h1>
 			{props.itemList
 				? props.content["itemList"].map((key) => (
 					<ItemCard

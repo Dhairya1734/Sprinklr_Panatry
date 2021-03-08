@@ -14,17 +14,31 @@ const Navigation = (props: Props): JSX.Element => {
 
 	const displayItemList = useCallback(() => {
 		if (visibleBlock != "itemNavigation") {
-			setVisibleBlock("itemNavigation");
+			if (visibleBlock == "PreviousOrder") {
+				document.getElementsByClassName("previousOrderDisplay")[0].classList.add("previousOrderRemove");
+				setTimeout( ()=> setVisibleBlock("itemNavigation"),500);
+			}
+			else {
+				setVisibleBlock("itemNavigation");
+			}
 		} else if (visibleBlock == "itemNavigation") {
-			setVisibleBlock(null);
+			document.getElementsByClassName("navItemName")[0].classList.add("navItemRemove"); // eslint-disable-line
+			setTimeout( ()=> setVisibleBlock(null),500);
 		}
 	}, [visibleBlock]);
 
 	const displayPreviousList = useCallback(() => {
 		if (visibleBlock != "PreviousOrder") {
-			setVisibleBlock("PreviousOrder");
+			if (visibleBlock == "itemNavigation") {
+				document.getElementsByClassName("navItemName")[0].classList.add("navItemRemove"); // eslint-disable-line
+				setTimeout(() => setVisibleBlock("PreviousOrder"), 500);
+			}
+			else {
+				setVisibleBlock("PreviousOrder");
+			}
 		} else if (visibleBlock == "PreviousOrder") {
-			setVisibleBlock(null);
+			document.getElementsByClassName("previousOrderDisplay")[0].classList.add("previousOrderRemove"); // eslint-disable-line
+			setTimeout( ()=> setVisibleBlock(null),500);
 		}
 	}, [visibleBlock]);
 

@@ -23,6 +23,7 @@
 	height: 300px;
 	width: 250px;
 	/* background-color: rgba(255, 255, 255, 0.9); */
+	background-color: #ede8e4;
 	border-radius: 10px;
 	animation-name: orderCard;
 	animation-duration: 2s;
@@ -51,21 +52,36 @@
 
 .navItemName {
 	position: absolute;
-	animation-name: fadeBox;
-	animation-duration: 2s;
+	animation-name: slideDown;
+	animation-duration: 0.5s;
 	z-index: 1;
-	/* background-color: black; */
+	background-color: #3a3737;
 	padding: 0px 20px;
 	width: 100px;
+	overflow: scroll;
 }
 
-@keyframes fadeBox {
+@keyframes slideDown{
 	from {
-		opacity: 0;
+		height: 0px;
 	}
 	to {
-		opacity: 1;
+		height: 270px;
 	}
+}
+
+@keyframes slideUp{
+	from {
+		height: 270px;
+	}
+	to {
+		height: 0px;
+	}
+}
+
+.navItemRemove{
+	animation-name: slideUp;
+	animation-duration: 0.5s;
 }
 
 .addButton {
@@ -75,6 +91,7 @@
 	min-width: 30px;
 	justify-self: flex-end;
 	/* background-color: red; */
+	background-color: #de1515;
 	text-align: center;
 	font-size: 20px;
 	display: flex;
@@ -84,9 +101,10 @@
 	color: white;
 }
 
-.mainNav {
+/* .mainNav {
 	margin: 10px 0px;
-}
+	display: inline;
+} */
 
 .white {
 	color: white;
@@ -94,13 +112,13 @@
 
 .changeQty {
 	font-size: 1.25rem;
-	/* background-color: inherit; */
+	background-color: inherit;
 }
 
 .cancel {
 	color: red;
 	font-size: 1.25rem;
-	/* background-color: inherit; */
+	background-color: inherit;
 }
 
 .tableSrNo {
@@ -134,35 +152,39 @@
 }
 
 #heading {
-	color: #eefbfb;
+	/* color: #012d4a; */
+	color: white;
 	min-height: 80px;
 	text-align: center;
 	padding-top: 10px;
 	font-size: 50px;
-	text-shadow: 2px 2px deeppink;
+	text-shadow: 2px 3px #f7128e;
 	height: 10%;
 	box-sizing: border-box;
+
 }
 
 #content {
 	display: flex;
-	height: 90%;
+	height: 82%;
 	box-sizing: border-box;
 }
 
 #navigation {
-	width: 15%;
+	display: flex;
+	/* height: 5%; */
 	/* background-color: #4da8da; */
-	padding-top: 25px;
-	padding-right: 50px;
+	/* background-color: #0077be; */
+	/* background-color: black; */
+	/* background-color: gray; */
+	background-image: linear-gradient(to right, #3e0003, #310000);
 	border-radius: 20px;
-	color: white;
 	overflow: auto;
 }
 
 #leftContent {
 	position: relative;
-	width: 65%;
+	width: 80%;
 	display: flex;
 	flex-wrap: wrap;
 	overflow: auto;
@@ -176,6 +198,7 @@
 	flex-direction: column;
 	position: relative;
 	/* background-color: #4da8da; */
+	background-color: #026fb1;
 	padding-top: 25px;
 	border-radius: 20px;
 	border-bottom-left-radius: 30px;
@@ -188,9 +211,8 @@
 	justify-content: center;
 	font-size: 20px;
 	min-height: 30px;
-	color: #111111;
+	color: white;
 	align-items: center;
-	text-shadow: #eefbfb;
 	box-sizing: border-box;
 	width: auto;
 	margin-bottom: 20px;
@@ -209,8 +231,9 @@
 	width: 100%;
 	align-self: flex-end;
 	padding: 5px 0px;
-	color: blanchedalmond;
+	color: darkgoldenrod;
 	/* background-color: black; */
+	background-color: darkred;
 	border-radius: 50px;
 	text-align: center;
 	display: flex;
@@ -220,13 +243,15 @@
 
 #submitButton {
 	padding: 5px 10px;
-	color: blanchedalmond;
-	/* background-color: inherit; */
+	color: white;
+	background-color: inherit;
 	font-size: inherit;
 	outline: none;
 	width: 100%;
 	height: 100%;
 	border-radius: inherit;
+	font-weight: bold;
+
 }
 
 a {
@@ -238,21 +263,36 @@ h1 {
 	font-size: 30px;
 	min-height: 40px;
 	text-align: center;
-	color: yellowgreen;
+	font-weight: 600;
+	/* background-color: #a52a2aba; */
+}
+
+.itemListHeading {
+	color: white;
+	text-shadow: 2px 2px blue;
 	padding: 5px;
 	position: sticky;
 	top: 0px;
-	/* background-color: #ad125b; */
+	background-color: black;
 }
+
 
 body {
 	/* background-color: #12232e; */
-	background-color: #f7f2f2;
+	/* background-color: #81c8ee; */
+	/* background-image: linear-gradient( to right, #0077be,white); */
+	background-image: linear-gradient(to right, black, rgb(0, 0, 0));
+	z-index: 0;
 }
 
 li {
 	list-style-type: none;
 	white-space: nowrap;
+}
+
+ol {
+	/* padding: 0px; */
+	padding-left: 20px;
 }
 
 strong {
@@ -266,7 +306,6 @@ strong {
 .naviItemHead:hover {
 	/* background-color: white; */
 	color: #4da8da;
-	padding: 10px 20px;
 	border-radius: 20px;
 }
 
@@ -284,13 +323,18 @@ button {
 }
 
 #displayItems button {
-	/* background-color: inherit; */
+	background-color: inherit;
 	font-family: inherit;
+}
+
+#displayItems li {
+	display: inline-block;
+	margin-right: 50px;
 }
 
 .previousOrderDisplay {
 	animation-name: displayOrderAnimation;
-	animation-duration: 2s;
+	animation-duration: 0.5s;
 	animation-fill-mode: both;
 	/* animation-direction: reverse; */
 	animation-timing-function: ease;
@@ -301,7 +345,7 @@ button {
 	left: 10%;
 	top: 10%;
 	opacity: 0;
-	/* background-color: white; */
+	background-color: #efeaeaf5;
 	z-index: 1;
 	overflow: auto;
 	justify-content: center;
@@ -313,9 +357,27 @@ button {
 @keyframes displayOrderAnimation {
 	from {
 		opacity: 0;
+		transform: scale(0);
 	}
 	to {
 		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.previousOrderRemove{
+	animation-name: RemoveDisplayOrderAnimation;
+	animation-duration: 0.5s;
+}
+
+@keyframes RemoveDisplayOrderAnimation {
+	from {
+		opacity: 1;
+		transform: scale(1);
+	}
+	to {
+		opacity: 0;
+		transform: scale(0);
 	}
 }
 
@@ -324,7 +386,7 @@ button {
 	right: 5px;
 	top: 5px;
 	color: darkred;
-	/* background-color: inherit; */
+	background-color: inherit;
 }
 
 .previousOrderSection {
@@ -384,49 +446,35 @@ button {
 .editButton {
 	width: 80%;
 	height: 100%;
-	/* background-color: green; */
+	background-color: green;
 	font-family: inherit;
 	color: white;
 	border-radius: 5px;
+	font-weight: 700;
+	padding: 6px;
+	margin: 5px;
 }
 
 .removeButton {
 	width: 80%;
-	/* background-color: red; */
+	background-color: red;
 	font-family: inherit;
 	color: white;
 	border-radius: 5px;
 	margin-top: 5px;
+	font-weight: 700;
+	padding: 6px;
 }
 
 .copyToCartButton {
 	width: 80%;
-	/* background-color: #aadd11; */
+	background-color: #aadd11;
 	font-family: inherit;
-	color: white;
+	color: black;
+	font-weight: 700;
+	padding: 6px;
 	border-radius: 5px;
 	margin: 5px;
-}
-
-.animation {
-	animation-name: moveToCart;
-	animation-duration: 1s;
-	position: fixed;
-	animation-timing-function: ease-out;
-	z-index: 2;
-}
-
-@keyframes moveToCart {
-	from {
-		left: 50%;
-		top: 50%;
-	}
-	to {
-		position: fixed;
-		left: 80%;
-		top: 20%;
-		transform: rotate(360deg);
-	}
 }
 
 .loading {

@@ -2,6 +2,7 @@ import React from "react";
 // import PreviousOrderSubRow from './PreviousOrderSubRow'
 //  import PropTypes from 'prop-types'
 import { ItemList, OneOrder } from "./Types";
+import SvgEdit from "./svgs/Edit";
 
 type Props = {
 	id: string;
@@ -55,6 +56,8 @@ const DisplayPreviousOrderRow = (props: Props) => {
 									: "removeButton"
 							}
 						>
+							{" "}
+							{props.order.status == "Pending" ? <SvgEdit /> : <></>}
 							{" "}
 							{props.order.status == "Pending" ? "Edit" : "Remove"}
 						</button>

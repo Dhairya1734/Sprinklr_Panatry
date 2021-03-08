@@ -31,17 +31,17 @@ const Maincontent: React.FunctionComponent = () => {
 
 	return (
 		<Provider store={store}>
+			<Suspense
+				fallback={
+					<div className='loading'> Navigation is Loading </div>
+				}
+			>
+				<Navigation
+					itemHeading={itemHeading}
+					itemList={items !== null ? items : null}
+				/>
+			</Suspense>
 			<section id='content'>
-				<Suspense
-					fallback={
-						<div className='loading'> Navigation is Loading </div>
-					}
-				>
-					<Navigation
-						itemHeading={itemHeading}
-						itemList={items !== null ? items : null}
-					/>
-				</Suspense>
 				<ItemListSection itemList={items} itemHeading={itemHeading} />
 				{
 					<Suspense
