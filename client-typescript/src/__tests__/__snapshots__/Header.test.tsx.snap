@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Test 1`] = `
+<header
+  data-testid="siteHeader"
+  id="heading"
+>
+  Sprinklr Pantry
+</header>
+`;

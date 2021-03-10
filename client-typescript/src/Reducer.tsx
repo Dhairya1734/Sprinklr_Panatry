@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { Cart, OneOrder } from "./Types";
+import { Cart, OneOrder, Actions } from "./Types";
 
 export const ACTIONS = {
 	ADD_QTY_TO_CART: "ADD_QTY_TO_CART",
@@ -52,7 +52,7 @@ function copyToCart(tempObj: OneOrder): Cart {
 
 function cartAction(
 	state = new Map(),
-	action: { key: string; type: string; obj: OneOrder; cart: Cart }
+	action: Actions
 ) {
 	switch (action.type) {
 	case ACTIONS.ADD_QTY_TO_CART:
@@ -66,7 +66,7 @@ function cartAction(
 	case ACTIONS.RESET_CART:
 		return resetCart();
 	default:
-		return new Map(action.cart);
+		return new Map(state);
 	}
 }
 

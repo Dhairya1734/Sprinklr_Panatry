@@ -29,19 +29,19 @@ export type AllOrder = {
 export type Cart = Map<string, number>;
 
 export type Actions =
-    | {
-            type:
-                | typeof ACTIONS.ADD_QTY_TO_CART
-                | typeof ACTIONS.SUB_QTY_FROM_CART
-                | typeof ACTIONS.REMOVE_FROM_CART;
-            key: string;
-    }
-    | {
-            type: typeof ACTIONS.RESET_CART;
-    }
-    | {
-			type: typeof ACTIONS.COPY_TO_CART;
-			obj: OneOrder;
-    };
+	| {
+		type:
+		| typeof ACTIONS.ADD_QTY_TO_CART
+		| typeof ACTIONS.SUB_QTY_FROM_CART
+		| typeof ACTIONS.REMOVE_FROM_CART;
+		key: string;
+	}
+	| {
+		type: typeof ACTIONS.RESET_CART;
+	}
+	| {
+		type: typeof ACTIONS.COPY_TO_CART;
+		obj: OneOrder;
+	};
 
 export type Dispatch<T> = (action: T) => T; //eslint-disable-line no-unused-vars
