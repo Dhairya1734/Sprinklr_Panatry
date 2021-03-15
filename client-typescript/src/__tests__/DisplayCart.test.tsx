@@ -15,9 +15,6 @@ jest.mock("./../AddOrderToPrevious", () => function someName() {
 	return (<></>);
 });
 
-// const AddOrderToPrevious = jest.createMockFromModule("./../AddOrderToPrevious").default;
-// AddOrderToPrevious = jest.fn();
-
 beforeEach(() => {
 	store = createStore(rootReducer);
 });
