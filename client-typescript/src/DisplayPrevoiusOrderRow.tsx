@@ -1,6 +1,6 @@
 import React from "react";
-// import PreviousOrderSubRow from './PreviousOrderSubRow'
-//  import PropTypes from 'prop-types'
+// import PreviousOrderSubRow from "./PreviousOrderSubRow"
+//  import PropTypes from "prop-types"
 import { ItemList, OneOrder } from "./Types";
 import SvgEdit from "./svgs/Edit";
 
@@ -13,21 +13,20 @@ type Props = {
 const DisplayPreviousOrderRow = (props: Props) => {
 	return (
 		<tr>
-			<td className='prOrDate'>{props.order.date.toDateString()}</td>
-			<td className='prOrTime'>
+			<td className="prOrDate">{props.order.date.toDateString()}</td>
+			<td className="prOrTime">
 				{props.order.date.toTimeString().split(" ")[0]}
 			</td>
-			<td className='prOrItems'>
-				<table className='subTable'>
+			<td className="prOrItems">
+				<table className="subTable">
 					<tbody>
 						{Object.keys(props.order).map((key) => {
 							return key !== "id" &&
 								key !== "date" &&
 								key != "status" &&
 								key != "no" ? (
-								//  <PreviousOrderSubRow key={key} name={props.itemList[key]["itemName"]} qty={props.order[key]} type = "CLIENT_TYPE"/>
-									<tr key={key} className='previousOrderItemRow'>
-										<td className='previousOrderItemTableItemName'>
+									<tr key={key} className="previousOrderItemRow">
+										<td className="previousOrderItemTableItemName">
 											{" "}
 											{props.itemList != null
 												? props.itemList[key]["itemName"]
@@ -40,10 +39,15 @@ const DisplayPreviousOrderRow = (props: Props) => {
 					</tbody>
 				</table>
 			</td>
-			<td className='prOrEdit'>
+			<td className="prOrEdit">
 				{props.order.status === "Pending" ||
 				props.order.status === "Delivered" ? (
 						<button
+							data-testid={
+								props.order.status === "Pending"
+									? "edit"
+									: "remove"
+							}
 							className={
 								props.order.status === "Pending"
 									? "editButton"
@@ -57,8 +61,11 @@ const DisplayPreviousOrderRow = (props: Props) => {
 							}
 						>
 							{" "}
-							{props.order.status == "Pending" ? <SvgEdit /> : <></>}
-							{" "}
+							{props.order.status == "Pending" ? (
+								<SvgEdit />
+							) : (
+								<></>
+							)}{" "}
 							{props.order.status == "Pending" ? "Edit" : "Remove"}
 						</button>
 					) : (
@@ -66,9 +73,11 @@ const DisplayPreviousOrderRow = (props: Props) => {
 					)}
 				{props.order.status !== "Pending" ? (
 					<button
-						className='copyToCartButton'
+						name= "copyToCart"
+						data-testid="copyToCart"
+						className="copyToCartButton"
 						value={props.id}
-						data-button-type='copyToCartButton'
+						data-button-type="copyToCartButton"
 					>
 						{" "}
 						Copy To Cart
@@ -77,7 +86,7 @@ const DisplayPreviousOrderRow = (props: Props) => {
 					""
 				)}
 			</td>
-			<td className='prOrStatus'>{props.order.status}</td>
+			<td className="prOrStatus">{props.order.status}</td>
 		</tr>
 	);
 };

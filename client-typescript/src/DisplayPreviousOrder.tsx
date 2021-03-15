@@ -79,13 +79,13 @@ export default function DisplayPreviousOrder(props: Props): JSX.Element {
 	}, []);
 
 	return ReactDOM.createPortal(
-		<div className='previousOrderDisplay' onClick={OnDisplayAllOrder} data-content-box-type='displayOrder'>
+		<div className='previousOrderDisplay' onClick={OnDisplayAllOrder} data-content-box-type='displayOrder' data-testid="allPreviousOrder">
 			<button className='cancelButton' data-button-type='cancelButton'>
 				[X]
 			</button>
 			<section className='previousOrderSection'>
 				<table className='previousOrderTable'>
-					<tbody>
+					<tbody data-testid="orders">
 						{Object.keys(state.allOrd).map((key) => {
 							return (
 								<DisplayPreviousOrderRow

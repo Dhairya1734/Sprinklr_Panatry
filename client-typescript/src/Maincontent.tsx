@@ -1,5 +1,5 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
-import Navigation from "./Navigation";
+// import Navigation from "./Navigation";
 // import DisplayCart from './Cart'
 import ItemListSection from "./ItemListSection";
 import { createStore } from "redux";
@@ -10,8 +10,8 @@ import { ItemHeading, ItemList } from "./Types";
 
 const store = createStore(rootReducer);
 
-// const Navigation= lazy(() => import('./Navigation'));
-const DisplayCart = lazy(() => import("./DisplayCart"));
+export const Navigation= lazy(() => import("./Navigation"));
+export const DisplayCart = lazy(() => import("./DisplayCart"));
 
 const Maincontent: React.FunctionComponent = () => {
 	const itemHeading: ItemHeading = JSON.parse(
@@ -24,8 +24,12 @@ const Maincontent: React.FunctionComponent = () => {
 				"https://raw.githubusercontent.com/Dhairya1734/Sprinklr_Panatry/main/itemdata.json",
 				{ method: "GET" }
 			)
-			.then((res) => res.json())
-			.then((data) => setItems(data))
+			.then((res) => {
+				return res.json();
+			})
+			.then((data) => {
+				setItems(data);
+			})
 			.catch(() => console.log("Error")); // eslint-disable-line no-console
 	}, []);
 

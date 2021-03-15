@@ -4,6 +4,6 @@ import App from "../App";
 
 test("renders learn react link", () => {
 	render(<App />);
-	const linkElement = screen.getByText("Sprinklr Pantry");
-	expect(linkElement).not.toBeNull();
+	const element = screen.getByText("Sprinklr Pantry");
+	expect(element).not.toBeNull();
 });

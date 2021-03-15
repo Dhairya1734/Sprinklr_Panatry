@@ -26,7 +26,7 @@ test(" Add Item to existing Cart ", () => {
 		key: "second",
 		type: ACTIONS.ADD_QTY_TO_CART,
 	};
-	const answer = rootReducer({ cart: tempCart }, action  );
+	const answer = rootReducer({ cart: tempCart }, action);
 	tempCart.set("second", 1);
 	expect(answer.cart).toMatchObject(tempCart);
 });

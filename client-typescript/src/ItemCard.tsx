@@ -17,6 +17,7 @@ const ItemCard = (props: Props): JSX.Element => {
 			<br />
 			<span className='itemName'> {props.itemName} </span>
 			<button
+				data-testid='addToCart'
 				className='addButton'
 				value={props.id}
 				data-button-type={true}

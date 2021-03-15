@@ -11,11 +11,11 @@ type Props = {
 
 const DisplayCartRow = (props: Props): JSX.Element => {
 	return (
-		<tr key={props.id}>
+		<tr key={props.id} data-testid='cartRow'>
 			<td className='tableSrNo'>{props.srNo}</td>
-			<td className='tablItemName'> {props.name} </td>
+			<td className='tablItemName' data-testid={ "name" + props.itemId }> {props.name} </td>
 			<td className='tableItemSubtract'>
-				<button
+				<button data-testid={ "sub"+ props.itemId }
 					className='changeQty'
 					value={props.itemId}
 					data-button-name='subQty'
@@ -23,9 +23,9 @@ const DisplayCartRow = (props: Props): JSX.Element => {
 					-
 				</button>
 			</td>
-			<td className='tableItemQty'>{props.qty}</td>
+			<td className='tableItemQty' data-testid={ props.itemId }>{props.qty}</td>
 			<td className='tableItemAdd'>
-				<button
+				<button data-testid={ "add"+ props.itemId }
 					className='changeQty'
 					value={props.itemId}
 					data-button-name='addQty'
@@ -34,7 +34,7 @@ const DisplayCartRow = (props: Props): JSX.Element => {
 				</button>
 			</td>
 			<td className='tableItemRemove'>
-				<button
+				<button data-testid={ "rem"+ props.itemId }
 					className='cancel'
 					value={props.itemId}
 					data-button-name='removeQty'

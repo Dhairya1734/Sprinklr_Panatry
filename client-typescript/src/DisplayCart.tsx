@@ -37,7 +37,7 @@ export default function DisplayCart(props: {
 				<DisplayCartItems itemList={props.itemList} />
 			</section>
 			<section id='submitButtonSection'>
-				<button id='submitButton' onClick={onSubmit}>
+				<button id='submitButton' onClick={onSubmit} data-testid="submit">
 					{" "}
 					Place Order
 				</button>

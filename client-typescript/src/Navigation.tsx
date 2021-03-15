@@ -13,17 +13,23 @@ const Navigation = (props: Props): JSX.Element => {
 	const [visibleBlock, setVisibleBlock] = useState<string | null>(null);
 
 	const displayItemList = useCallback(() => {
+		// e.preventDefault();
 		if (visibleBlock != "itemNavigation") {
 			if (visibleBlock == "PreviousOrder") {
 				document.getElementsByClassName("previousOrderDisplay")[0].classList.add("previousOrderRemove");
-				setTimeout( ()=> setVisibleBlock("itemNavigation"),500);
+				setTimeout(() => {
+					setVisibleBlock("itemNavigation");
+					
+				}, 500);
 			}
 			else {
 				setVisibleBlock("itemNavigation");
 			}
 		} else if (visibleBlock == "itemNavigation") {
 			document.getElementsByClassName("navItemName")[0].classList.add("navItemRemove"); // eslint-disable-line
-			setTimeout( ()=> setVisibleBlock(null),500);
+			setTimeout(() => {
+				setVisibleBlock(null);
+			}, 500);
 		}
 	}, [visibleBlock]);
 
@@ -49,7 +55,7 @@ const Navigation = (props: Props): JSX.Element => {
 			>
 				<ol id='displayItems'>
 					<li>
-						<button
+						<button data-testid="itemNavigation"
 							className='white mainNav'
 							onClick={displayItemList}
 						>
@@ -57,7 +63,7 @@ const Navigation = (props: Props): JSX.Element => {
 						</button>
 						<br />
 						{visibleBlock === "itemNavigation" ? (
-							<ol>
+							<ol data-testid="itemNavigationBlock" >
 								<div className='navItemName'>
 									{Object.keys(props.itemHeading).map(
 										(key) => {
@@ -80,7 +86,7 @@ const Navigation = (props: Props): JSX.Element => {
 						)}
 					</li>
 					<li>
-						<button
+						<button data-testid="displayPrevious"
 							className='white mainNav'
 							onClick={displayPreviousList}
 						>
